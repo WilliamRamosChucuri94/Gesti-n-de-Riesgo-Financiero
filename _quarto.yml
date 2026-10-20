@@ -1,8 +1,11 @@
+
 project:
   type: website
+  output-dir: _site
 
 format:
   html:
+    output-file: index.html
     theme: cosmo
     toc: true
     toc-location: left
@@ -16,3 +19,4 @@ format:
     code-tools: true
     code-summary: "Ver código"
     css: styles.css
+
