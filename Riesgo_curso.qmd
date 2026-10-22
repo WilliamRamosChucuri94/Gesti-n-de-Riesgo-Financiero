@@ -54,7 +54,7 @@ $$
 *Valores en millones de USD.*
 
 | Activos           | Millones USD | Pasivos y patrimonio           | Millones USD |
-|:------------------|-------------:|:-------------------------------|-------------:|
+|:-----------------|-----------------:|:------------------|-----------------:|
 | Créditos          |          700 | Depósitos                      |          850 |
 | Inversiones       |          200 | Otras obligaciones             |           50 |
 | Efectivo          |          100 | Patrimonio                     |          100 |
@@ -184,7 +184,7 @@ institución.
 **Evolución de los acuerdos**
 
 | Acuerdo | Año de referencia | Principal contribución |
-|----|----|----|
+|------------------------|------------------------|------------------------|
 | Basilea I | 1988 | Introduce un estándar internacional de suficiencia de capital asociado principalmente al riesgo crediticio |
 | Basilea II | 2004 | Desarrolla los tres pilares de supervisión y amplía la sensibilidad al riesgo |
 | Basilea III | Desde 2010 | Refuerza calidad y cantidad del capital, colchones, apalancamiento, liquidez y medición de riesgos |
@@ -527,7 +527,7 @@ indicador para medir cada riesgo y una medida de control.
 Solución orientativa:
 
 | Riesgo | Causa | Indicador | Control |
-|----|----|----|----|
+|------------------|------------------|------------------|------------------|
 | Liquidez | Descalce entre vencimientos y obligaciones | Brecha acumulada por plazo | Mantener recursos realizables y límites de liquidez |
 | Mercado | Variación de tasas internacionales | Duración, DV01 o sensibilidad | Límites de duración y seguimiento de mercado |
 
@@ -545,7 +545,7 @@ La liquidez, en cambio, se refiere a la capacidad de disponer de
 recursos oportunamente para cumplir pagos.
 
 | Pregunta | Solvencia | Liquidez |
-|----|----|----|
+|------------------------|------------------------|------------------------|
 | ¿Cuál es el problema? | Pérdidas que deterioran la posición patrimonial | Incapacidad de atender pagos en el momento requerido |
 | ¿Qué se analiza? | Activos, pasivos, capital o patrimonio | Flujos, vencimientos y disponibilidad de recursos |
 | ¿Puede existir con patrimonio positivo? | El deterioro patrimonial puede preceder a la insolvencia | Sí, puede haber problemas de liquidez con patrimonio positivo |
@@ -653,7 +653,7 @@ estadounidenses que circulan en la economía.
 Esto introduce varias particularidades.
 
 | Dimensión | Consecuencia en Ecuador |
-|----|----|
+|------------------------------------|------------------------------------|
 | Emisión monetaria | No se pueden crear billetes USD mediante emisión propia |
 | Liquidez | Depende de los recursos y mecanismos disponibles legalmente |
 | Tasas internacionales | Las condiciones de financiamiento e inversión en USD están influidas por los mercados internacionales |
@@ -838,7 +838,7 @@ Para esta parte de la clase utilizaremos el marco normativo vigente y
 distinguiremos las funciones de sus diferentes disposiciones.
 
 | Instrumento | Aspecto relevante para la clase |
-|----|----|
+|------------------------------------|------------------------------------|
 | Constitución, art. 302 | Objetivos de las políticas monetaria, crediticia, cambiaria y financiera |
 | Constitución, art. 303 | Formulación e instrumentación de políticas y papel del BCE |
 | Código Orgánico Monetario y Financiero | Mandato, funciones, operaciones y régimen del BCE |
@@ -899,15 +899,780 @@ competencia formal para hacerlo.
 
 # Unidad 2. Riesgo de Crédito
 
+**Objetivo:** Analizar riesgo de crédito mediante indicadores
+financieros para identificar exposición institucional.
+
+**Antes de comenzar: tres ideas que todos deben manejar**
+
+1.  **Activo:** Lo que posee una institución o el derecho a cobrar. Un
+    crédito otorgado es un activo para el banco.
+2.  **Saldo de crédito:** Capital pendiente de recuperar. No es lo mismo
+    que el monto originalmente prestado.
+3.  **Pérdida:** Dinero que probablemente no se recuperará;
+    **exposición** y **pérdida** no significan lo mismo.
+
+**Glosario sin tecnicismos**
+
+| Término | En palabras sencillas | Término técnico |
+|------------------------|------------------------|------------------------|
+| Atraso | La cuota no se pagó a tiempo | Mora |
+| Incumplimiento | El crédito alcanza el criterio definido de default | *Default* |
+| Frecuencia de incumplimiento | Qué parte de una cohorte llegó a default | Estimador histórico de PD / PI |
+| Dinero pendiente al incumplir | Capital expuesto cuando ocurre el default | EAD / EAI simplificada |
+| Porción no recuperada | Qué parte de la EAD se pierde | LGD / PDI |
+| Pérdida proyectada | Combinar posibilidad de default, exposición y severidad | EL o pérdida esperada |
+
+**Escenario 1**
+
+![](images/clipboard-2412430222.png)
+
+**Escenario 2**
+
+![](images/clipboard-2519265353.png)
+
+**Al principio, William es un buen cliente..**
+
+William tiene un trabajo estable, gana USD 3.000 mensuales y siempre
+paga sus deudas.
+
+**El banco piensa:**
+
+"William tiene dinero suficiente para pagarme. Es poco probable que no
+me devuelva el préstamo".
+
+Por eso, el banco confía en William.
+
+**Un día, la situación de William empeora**
+
+Ahora imagina que William pierde su trabajo y consigue otro donde gana
+USD 700 mensuales.
+
+**Pero hay algo importante:**
+
+William todavía está pagando puntualmente todas las cuotas de su
+préstamo.
+
+Entonces, **¿cuál es el problema?**
+
+**El banco piensa:**
+
+"Antes William ganaba USD 3.000 y podía pagarme fácilmente. Ahora gana
+USD 700 y, aunque sigue pagando, existe una mayor posibilidad de que en
+el futuro no pueda hacerlo".
+
+Eso es el deterioro de la calidad crediticia de la contraparte.
+
+En palabras sencillas:
+
+-   **Contraparte:** William, la persona que debe pagar.
+
+-   **Calidad crediticia:** Qué tan capaz es William de cumplir sus
+    obligaciones.
+
+-   **Deterioro:** Su situación económica empeoró y ahora ***hay más
+    riesgo de que no pague***.
+
+| Riesgo de crédito en sentido estricto | Riesgo de crédito en sentido amplio |
+|------------------------------------|------------------------------------|
+| William deja de pagar una cuota que debía pagar. | William sigue pagando, pero su situación económica empeora. |
+| Existe un incumplimiento. | Existe un deterioro de su calidad crediticia. |
+| El banco puede sufrir una pérdida por el impago. | El crédito puede perder valor antes de que exista un impago. |
+
+**Por lo tanto, la calidad del riesgo puede estar determinada tanto por
+la probabilidad de que se produzca el incumplimiento del contrato, como
+por la reducción de las garantías.**
+
+**Un ejemplo que acompañará toda la unidad**
+
+Una institución otorga un crédito de USD 10.000. Con el tiempo el
+cliente paga algunas cuotas y el saldo baja; después deja de pagar.
+¿Puede el banco perder USD 10.000?
+
+No necesariamente: primero debemos saber cuánto estaba pendiente, si
+efectivamente ocurrió default y cuánto logró recuperar. Las secciones
+2.1 a 2.5 responden estas preguntas en orden.
+
+**Cinco segmentos y sus diferencias**
+
+Cada segmento tiene una estructura distinta de deudores, tamaño y
+vencimientos. No es correcto interpretar que una tasa de mora más alta
+implica automáticamente mayor PD individual o mayor LGD.
+
+| Segmento | Caso cotidiano | Qué miraremos |
+|------------------------|------------------------|------------------------|
+| Productivo | Una empresa financia maquinaria o capital de trabajo | Exposición de empresas, comportamiento y concentración |
+| Microcrédito | Un pequeño negocio financia inventarios | Incumplimientos, morosidad y recuperación |
+| Consumo | Una familia financia una compra personal | Calidad de cartera y pagos mensuales |
+| Vivienda | Un hogar financia la compra de una casa | Plazos y posibles recuperaciones con garantías |
+| Educativo | Una persona financia estudios | Tamaño de segmento y comportamiento de pagos |
+
+Las cifras son saldos agregados por banco y segmento, no datos de
+prestatarios. En cada corte se suman *por vencer*, *no devenga
+intereses* y *vencida*.
+
 ## 2.1 Evaluación crediticia
 
-## 2.2 Incumplimiento
+**Situación de partida: ¿prestarías tu dinero?**
 
-## 2.3 Exposición
+Dos personas solicitan un préstamo por el mismo valor. Una tiene
+ingresos estables, deudas manejables y un buen historial; otra presenta
+atrasos reiterados y cuotas que consumen casi todo su ingreso.
 
-## 2.4 Provisiones
+**El riesgo de crédito comienza antes del desembolso:**
 
-## 2.5 Indicadores Financieros
+-   Hay que evaluar si el deudor podrá pagar.
+
+-   Un banco central hace algo análogo al elegir emisores y
+    contrapartes, aunque no otorgue créditos de consumo
+
+**¿Quién solicita el crédito? Conectar persona, préstamo e historial**
+
+**Ejercicio: De la historia al indicador**
+
+Una persona solicita un crédito.
+
+Antes de desembolsar, el banco observa ingresos, cuotas de otras deudas,
+cuota nueva, actividad laboral y atrasos *anteriores*.
+
+Meses después ve si pagó o incumplió. Son momentos distintos:
+**evaluación inicial** y **seguimiento posterior**.
+
+La base `06_perfil_solicitante_SINTETICO.csv` contiene
+informacióncorrespondiente a exactamente los mismos 1.000 `id_credito`
+de la base de préstamos.
+
+Para empezar usamos la **carga financiera**:
+
+$$
+Carga\ financiera=rac{Cuota\ del\ crédito+Otras\ cuotas}{Ingreso\ mensual} imes100
+$$
+
+***Ejemplo manual**:* ingreso USD 1.500, cuota nueva USD 300, otras
+cuotas USD 150: $$((300+150)/1500)x100=30\%$$Esto mide proporción del
+ingreso comprometido, no la PD y no basta por sí solo para aprobar un
+préstamo.
+
+-   La actividad económica puede señalar exposición a distintos ciclos
+    económicos
+
+-   No asignamos un riesgo automático por ser agricultor, trabajador
+    público o privado.
+
+-   La variable sexo se reserva para auditar equidad y sesgos, nunca
+    para decidir a quién prestar.
+
+**Pregunta de nivel fundamental:**
+
+¿Qué diferencia existe entre ganar USD 2.000 y disponer de USD 2.000
+para pagar deudas?
+
+**Profundización:** ¿qué otras variables de gasto y estabilidad de
+ingresos faltarían para una evaluación real?
+
+**Paso práctico A: inspeccionar perfiles**
+
+``` python
+# Mostrar cómo son las personas de nuestro ejemplo ficticio
+print(perfil.head())
+
+# Revisar que cada crédito tenga un perfil
+print('Créditos con perfil:', perfil['id_credito'].nunique())
+```
+
+**Paso práctico B: calcular la carga financiera**
+
+``` python
+# Unir el perfil con los datos del préstamo usando id_credito
+clientes = creditos.merge(perfil, on='id_credito')
+
+# Calcular la carga financiera mensual de cada persona
+clientes['carga_pct'] = 100 * (
+    clientes['cuota_credito_mensual_usd'] +
+    clientes['otras_cuotas_mensuales_usd']
+) / clientes['ingreso_mensual_usd']
+
+print(clientes[['id_credito','segmento','ingreso_mensual_usd',
+                'carga_pct','atrasos_previos_12m']].head())
+```
+
+**Situación de partida: ¿prestarías tu dinero?**
+
+Dos personas solicitan un préstamo por el mismo valor. Una tiene
+ingresos estables, deudas manejables y un buen historial; otra presenta
+atrasos reiterados y cuotas que consumen casi todo su ingreso. **El
+riesgo de crédito comienza antes del desembolso**: hay que evaluar si el
+deudor podrá pagar. Un banco central hace algo análogo al elegir
+emisores y contrapartes, aunque no otorgue créditos de consumo.
+
+### Ejercicio cinco segmentos: de la historia al indicador
+
+**Situación:** un supervisor observa la cartera de cinco segmentos al
+mismo corte. No basta preguntar cuál tiene más mora en dólares: hay que
+calcular la proporción respecto a su cartera y observar cuánto
+representa en el total.
+
+$$
+\text{Cartera improductiva}=\text{No devenga intereses}+\text{Cartera vencida}
+$$
+
+$$
+\text{Morosidad (\%)}=100\times\frac{\text{Cartera improductiva}}{\text{Saldo total de cartera}}
+$$
+
+**Ejemplo manual hipotético:** consumo tiene USD 1.000 millones de
+saldo, USD 30 millones que no devengan intereses y USD 20 millones
+vencidos: improductiva = 30 + 20 = USD 50 millones; morosidad = 50 /
+1.000 × 100 = **5 %**. Esto no es una PD anual.
+
+**Ahora con bancos comerciales reales y cinco segmentos:**
+
+**Ejercicio en Python**
+
+``` python
+# Elegir un corte completo de los archivos proporcionados
+base = cartera[cartera['periodo'] == '2025-12']
+
+# Agrupar por segmento y sumar columnas de saldo
+resumen5 = base.groupby('segmento')[
+    ['total_usd', 'no_devenga_usd', 'vencida_usd']
+].sum()
+
+# Morosidad: primero sumar, después dividir
+resumen5['mora_pct'] = 100 * (
+    resumen5['no_devenga_usd'] + resumen5['vencida_usd']
+) / resumen5['total_usd']
+
+print(resumen5[['total_usd', 'mora_pct']].round(2))
+```
+
+**Nivel fundamental:** identifica el segmento con mayor saldo y el de
+mayor morosidad. ¿Son el mismo? **Nivel avanzado:** explica cómo podría
+cambiar el ranking por incorporar un banco que no operaba en otro corte.
+
+**En el BCE:** la cartera minorista por segmento no es el objeto
+principal de este análisis; en su lugar se evalúan emisores, inversiones
+y contrapartes a partir de estados y notas auditadas. No fabriques un
+indicador de mora del BCE dividiendo cualquier provisión entre activos
+totales.
+
+**¿Qué es evaluar riesgo de crédito?**
+
+Una evaluación crediticia estudia **la capacidad y disposición para
+pagar**, con atención a flujos de caja, endeudamiento, garantías,
+comportamiento histórico y entorno económico. La exposición crediticia
+de una institución es el valor vulnerable al incumplimiento, no
+necesariamente una pérdida. Para un banco comercial, los estados de la
+cartera ayudan a vigilar su calidad; **un agregado por banco no permite
+aprobar o rechazar préstamos individuales**.
+
+**Cinco preguntas iniciales de evaluación**
+
+-   **¿Puede pagar?** Ingresos y flujos disponibles.
+-   **¿Ha pagado?** Historial de cumplimiento.
+-   **¿Cuánto debe?** Endeudamiento y otras obligaciones.
+-   **¿Qué respaldo existe?** Garantías y su valor realizable.
+-   **¿Qué riesgos enfrenta?** Sector económico y condiciones externas.
+
+El *scoring* convierte ciertos atributos en una puntuación; un *rating*
+clasifica la calidad crediticia de emisores o deudores.
+
+**Una puntuación simplificada en clase no es un modelo de aprobación ni
+sustituye políticas institucionales.**
+
+**Mini-ejercicio de puntuación — totalmente hipotético**
+
+| Factor                              | Cliente A | Cliente B |
+|-------------------------------------|----------:|----------:|
+| Pagos sin atrasos (0–2 puntos)      |         2 |         0 |
+| Ingreso suficiente (0–2 puntos)     |         2 |         1 |
+| Endeudamiento moderado (0–2 puntos) |         2 |         0 |
+| **Total sobre 6**                   |     **6** |     **1** |
+
+**Fundamental:** ¿a quién analizarías con mayor cautela y por qué?
+**Profundización:** ¿por qué este puntaje no estima automáticamente una
+PD?
+
+**Ejemplo teórico: cobertura del servicio de deuda**
+
+Una empresa dispone de USD 360.000 para pagar USD 300.000 de intereses y
+capital durante un año. Su cobertura es:
+
+$$
+DSCR=\frac{Flujo\ disponible\ para\ servicio\ de\ deuda}{Servicio\ de\ deuda}=\frac{360.000}{300.000}=1,20
+$$
+
+Tiene USD 1,20 de flujo por cada USD 1 de servicio de deuda bajo estos
+supuestos; esto no garantiza ausencia de default.
+
+**Cómo leer la fórmula:** arriba está el dinero disponible; abajo, las
+cuotas que deben pagarse.
+
+Si disponemos de USD 360.000 y necesitamos USD 300.000, dividimos
+360.000 entre 300.000. El resultado 1,20 **no es 120 % de probabilidad
+de pago**; indica cobertura del flujo respecto al servicio de deuda.
+
+**Banco comercial: cartera productiva frente a microcrédito**
+
+**Dato observado:** los CSV contienen saldos por segmento y banco;
+primero elegimos diciembre 2025 y sumamos la cartera según su segmento,
+excluyendo únicamente las filas marcadas como instituciones en
+liquidación para el cuadro comparable. Recuerda: la cartera productiva
+es un segmento crediticio, no todo el activo del banco.
+
+**Ejercicio en Python**
+
+``` python
+base_2025 = cartera[
+    (cartera['periodo'] == '2025-12') &
+    (cartera['en_liquidacion'] == False)
+]
+
+resumen = base_2025.groupby('segmento')[
+    ['total_usd','no_devenga_usd','vencida_usd']
+].sum()
+resumen['total_millones'] = resumen['total_usd'] / 1_000_000
+print(resumen[['total_millones']])
+```
+
+**Preguntas de interpretación:**
+
+¿Cuál segmento tiene mayor volumen?
+
+¿Mayor saldo significa necesariamente mayor riesgo?
+
+**No: la exposición y el deterioro son dimensiones distintas.**
+
+### Aplicación BCE
+
+-   En el BCE, evaluar crédito no equivale a aprobar microcréditos.
+
+-   Se estudia el riesgo de emisores de instrumentos financieros, bancos
+    depositarios y contrapartes: calidad de crédito, elegibilidad,
+    plazo, concentración y límites.
+
+-   La preferencia institucional por seguridad y liquidez no debe
+    sustituirse por una búsqueda exclusiva de rentabilidad.
+
+-   Los estados auditados de 2025 presentan políticas sobre riesgo
+    crediticio y estimación de pérdidas crediticias.
+
+## 2.2 Incumplimiento y PD
+
+**Situación de partida: una cuota atrasada no siempre significa
+default**
+
+Una persona puede pagar con 10 días de retraso. Otra acumula 100 días
+sin pagar. Hay que distinguir **atraso**, **clasificación contable de
+cartera** e **incumplimiento**. Para la práctica de historias ficticias
+estableceremos expresamente la regla didáctica de 90 días; no
+afirmaremos que todas las operaciones ecuatorianas se rigen por un
+umbral único.
+
+**Mora observada, default y probabilidad**
+
+La morosidad es una **fotografía de saldos** deteriorados a una fecha;
+la PD es una **probabilidad de transición** al incumplimiento en un
+horizonte. En la base pública definimos cartera improductiva como *no
+devenga intereses más cartera vencida*:
+
+$$
+Morosidad_t=\frac{Cartera\ que\ no\ devenga_t+Cartera\ vencida_t}{Saldo\ total\ de\ cartera_t}\times100
+$$
+
+Primero **sumamos importes** y después dividimos. No hay que promediar
+porcentajes de distintos bancos o cantones.
+
+**Ejemplo comercial con datos observados**
+
+**Ejercicio en Python**
+
+``` python
+resumen['improductiva'] = resumen['no_devenga_usd'] + resumen['vencida_usd']
+resumen['morosidad_pct'] = 100 * resumen['improductiva'] / resumen['total_usd']
+print(resumen[['total_millones','morosidad_pct']].round(2))
+
+resumen['morosidad_pct'].plot(kind='bar', title='Morosidad por segmento - dic. 2025')
+plt.ylabel('Porcentaje')
+plt.show()
+```
+
+Una mora observada del 6% **no significa** que PD anual sea 6%. La
+primera mide saldo improductivo en el corte; la segunda requiere seguir
+créditos inicialmente sanos y observar nuevos incumplimientos.
+
+**¿Cómo estimar PD con historial individual?**
+
+En el taller hay créditos ficticios con identificador `id_credito`, días
+de mora y una fila por mes. Para **esta práctica solamente**, definimos
+default cuando un crédito alcanza **90 o más días de mora por primera
+vez**. Es una convención docente que no reemplaza definiciones
+regulatorias de Ecuador. Todos los 1.000 créditos se originan al
+comienzo de 2025; el horizonte de observación de default es
+enero–diciembre de 2025.
+
+$$
+\widehat{PD}_{12m}=\frac{N\acute{u}mero\ de\ cr\acute{e}ditos\ de\ la\ cohorte\ que\ incumplieron\ en\ 12\ meses}{N\acute{u}mero\ de\ cr\acute{e}ditos\ de\ la\ cohorte\ inicial}
+$$
+
+Para que un crédito no se cuente varias veces, usamos `.nunique()` sobre
+el identificador.
+
+**Ejercicio en Python**
+
+``` python
+hist_2025 = historial[historial['fecha_corte'] <= '2025-12-31']
+malos = hist_2025[hist_2025['dias_mora'] >= 90]
+n_default = malos['id_credito'].nunique()
+n_inicial = creditos['id_credito'].nunique()
+pd_historica = n_default / n_inicial
+print('Créditos al inicio:', n_inicial)
+print('Créditos que incumplieron:', n_default)
+print('PD histórica de cohorte:', round(pd_historica * 100, 2), '%')
+```
+
+**Del perfil inicial al incumplimiento observado**
+
+Ahora conectamos los datos al solicitar el crédito con lo ocurrido en
+los siguientes doce meses. El indicador `incumplio` se obtiene del
+historial (no es un dato entregado al principio). Compararemos grupos
+por antecedentes de pago, sin interpretar la diferencia como causal ni
+como un modelo predictivo calibrado.
+
+**Fundamental:**
+
+Qué grupo tiene más incumplimientos observados?
+
+**Profundización:**
+
+¿por qué sería incorrecto concluir que una variable causa el default
+solo por comparar promedios?
+
+¿Cómo evaluaríamos sesgos antes de usar un modelo en decisiones reales?
+
+**Paso práctico: comparar perfiles y default histórico**
+
+``` python
+# Marcar incumplimientos observados durante 2025
+clientes['incumplio'] = clientes['id_credito'].isin(malos['id_credito']).astype(int)
+
+# Comparar frecuencias por atrasos anteriores
+comparacion = clientes.groupby('atrasos_previos_12m')['incumplio'].agg(['count','sum','mean'])
+comparacion['pd_historica_pct'] = comparacion['mean'] * 100
+print(comparacion[['count','sum','pd_historica_pct']].round(2))
+```
+
+**BCE:** un emisor o una institución depositaria puede incumplir sus
+obligaciones. La PD para esos instrumentos debe considerar horizonte,
+tipo de contraparte y metodología aplicable; no se toma la morosidad de
+los bancos privados como PD de una inversión del BCE.
+
+**2.3 Exposición, EAD y pérdida esperada**
+
+**Situación de partida: prestar USD 10.000 no significa que siempre haya
+USD 10.000 expuestos**
+
+Si una persona ya pagó USD 4.000 de capital y luego incumple, quedan
+aproximadamente USD 6.000 de capital por cobrar (ignorando intereses y
+otros cargos). **La exposición cambia con los pagos**. En el banco
+central, cambia también por el tipo de instrumento, su vencimiento y la
+contraparte.
+
+**¿Cuánto está en riesgo?**
+
+*EAD* significa **exposición al momento del incumplimiento**. Para un
+préstamo plenamente desembolsado sin líneas adicionales, aproximaremos
+la EAD mediante el **saldo de capital registrado en el primer mes de
+default**. Es una simplificación: no considera intereses devengados,
+contingentes o límites no dispuestos.
+
+$$
+EL=PD\times LGD\times EAD
+$$
+
+-   **PD:** posibilidad de incumplimiento durante un período.
+-   **LGD:** fracción de la exposición que no se recupera, considerando
+    costos y valor temporal según el modelo.
+-   **EAD:** saldo estimado al producirse el default.
+
+Ejemplo puramente teórico: si PD = 5%, LGD = 60% y EAD = USD 10.000,
+entonces:
+
+$$
+EL=0,05\times0,60\times10.000=USD\ 300
+$$
+
+**Exposición del sistema bancario: concentración por institución**
+
+Con los datos públicos de diciembre 2025 podemos calcular cuánto
+representa un banco dentro del universo disponible, por segmento. Este
+indicador es **concentración de cartera en el conjunto de bancos**, no
+concentración de un banco en un deudor.
+
+**Ejercicio en Python**
+
+``` python
+productivo = base_2025[base_2025['segmento'] == 'PRODUCTIVO']
+por_banco = productivo.groupby('banco')['total_usd'].sum().sort_values(ascending=False)
+participacion = 100 * por_banco / por_banco.sum()
+print(participacion.head(5).round(2))
+```
+
+**Determinar EAD sin que venga calculada**
+
+Filtramos los registros que alcanzaron 90 días de atraso y nos quedamos
+con **el primer corte de default** de cada crédito. Su saldo es la
+exposición observada en el evento.
+
+**Ejercicio en Python**
+
+``` python
+primer_default = malos.sort_values('fecha_corte').drop_duplicates('id_credito')
+
+EAD_total = primer_default['saldo_capital_usd'].sum()
+print('Créditos en default:', len(primer_default))
+print('EAD total de incumplidos (USD):', round(EAD_total, 2))
+print(primer_default[['id_credito','fecha_corte','saldo_capital_usd']].head())
+```
+
+**Aplicación BCE:** para una inversión, el concepto de exposición puede
+incluir valor en libros y otros elementos según su instrumento. El
+balance completo del BCE no es la EAD de una contraparte. No sustituimos
+activos totales por EAD ni usamos el CAR bancario como medida de riesgo
+del BCE.
+
+## 2.4 Provisiones, recuperaciones y LGD
+
+**Situación de partida: el banco presta hoy, pero debe reconocer el
+posible deterioro**
+
+Una pérdida no aparece mágicamente al final del proceso. Las
+instituciones realizan estimaciones de deterioro de acuerdo con
+políticas contables y normas aplicables. Una provisión afecta resultados
+y el valor contable de los activos, pero **no es una bolsa de efectivo
+reservada en una caja**.
+
+**¿Qué representa una provisión?**
+
+Una provisión o estimación de deterioro reconoce pérdidas crediticias
+bajo la política contable y la regulación aplicable. **Pérdida esperada
+calculada en un modelo ≠ provisión contable obligatoria**: los
+horizontes, tratamientos, etapas y definiciones pueden diferir.
+
+**Banca comercial:** los balances mensuales cargados contienen la cuenta
+contable `1499`, referida a provisiones para créditos incobrables. Su
+signo, jerarquía y denominador deben conciliarse antes de reportar una
+tasa oficial de cobertura. No se asume que `1499 / 14` sea directamente
+la cobertura regulatoria.
+
+**BCE:** los estados auditados 2025 explican la pérdida crediticia
+esperada con la notación institucional:
+
+$$
+PCE=PI\times PDI\times EAI
+$$
+
+PI corresponde a PD, PDI a LGD y EAI a EAD. En la nota se reconocen las
+etapas I, II y III del deterioro. Esto muestra cómo el concepto sí es
+relevante para el BCE aunque sus exposiciones no sean créditos
+minoristas. La provisión por riesgo de inversiones incluida en el
+conjunto documental es distinta de un default observado en
+microcréditos.
+
+**Estimar LGD *desde recuperaciones*, no desde una columna supuesta**
+
+Después del incumplimiento, algunos créditos tienen cobros y costos de
+recuperación. Para una simplificación de aula, sumamos recuperaciones
+**netas de costos** registradas hasta junio 2026:
+
+$$
+LGD_{observada}=1-\frac{Recuperaciones\ netas\ posteriores\ al\ default}{EAD\ al\ default}
+$$
+
+La ventana de recuperación está truncada en junio de 2026: **esta LGD no
+es definitiva**, y la estimación profesional exigiría descontar flujos,
+definir costos elegibles y manejar recuperaciones posteriores.
+
+**Ejercicio en Python**
+
+``` python
+recuperaciones['neto_usd'] = (
+    recuperaciones['recuperacion_usd'] - recuperaciones['costo_recuperacion_usd']
+)
+neto_total = recuperaciones['neto_usd'].sum()
+lgd_observada = 1 - neto_total / EAD_total
+print('Recuperaciones netas (USD):', round(neto_total, 2))
+print('LGD observada provisional:', round(100 * lgd_observada, 2), '%')
+```
+
+**Caso BCE con cifras documentales**
+
+Los estados financieros auditados suministrados muestran cifras de
+patrimonio, activos y ciertas provisiones. Antes de utilizar el monto de
+provisión en un reporte oficial debe comprobarse la unidad de
+presentación de la nota original. **Estos son saldos contables, no
+probabilidades de default.** Comparamos una provisión por riesgo de
+inversiones publicada entre 2024 y 2025, teniendo presente que la escala
+de la nota debe conservarse como está indicada en el documento original.
+
+**Ejercicio en Python**
+
+``` python
+provision_bce = bce[bce['concepto'] == 'Provisión por riesgo de inversiones (nota)']
+print(provision_bce[['anio','valor_usd_millones','alcance']])
+
+if len(provision_bce) == 2:
+    valores = provision_bce.sort_values('anio')['valor_usd_millones'].tolist()
+    cambio = 100 * (valores[1] / valores[0] - 1)
+    print('Cambio porcentual del saldo documentado:', round(cambio, 2), '%')
+```
+
+El aumento o disminución de la provisión **no es igual** al cambio de
+PD. Puede responder a variaciones de exposición, metodología,
+recuperación o valoración.
+
+## 2.5 Indicadores de riesgo financiero y decisiones
+
+**Situación de partida: de los números a una decisión**
+
+Un indicador aislado no responde si conviene crecer, restringir créditos
+o revisar una contraparte. Hace falta comparar períodos, segmentos y
+concentraciones, explicando el contexto. Lo importante al cerrar la
+unidad es responder: **¿Dónde está la exposición institucional y qué
+debemos vigilar?**
+
+**Construcción de un pequeño tablero**
+
+| Indicador | Numerador | Denominador | Alcance |
+|------------------|------------------|------------------|------------------|
+| Morosidad por segmento | No devenga + vencida | Cartera total | Saldo observado |
+| Participación de banco | Cartera del banco | Cartera del segmento | Concentración entre entidades |
+| PD histórica sintética | Créditos que alcanzaron default | Créditos de cohorte inicial | Frecuencia de default de 12 meses |
+| LGD provisional sintética | EAD - recuperación neta | EAD de incumplidos | Recuperación incompleta |
+| Pérdida esperada | PD × LGD × EAD | — | Modelo, no provisión automática |
+
+**Comparación temporal de segmentos**
+
+Para diciembre de 2024 y 2025, primero agregaremos importes y después
+calcularemos morosidad y crecimiento; así los alumnos aprenden a
+interpretar los saldos en el tiempo.
+
+**Ejercicio en Python**
+
+``` python
+dos_anios = cartera[
+    cartera['periodo'].isin(['2024-12', '2025-12']) &
+    (cartera['en_liquidacion'] == False)
+]
+tabla = dos_anios.groupby(['periodo','segmento'])[
+    ['total_usd','no_devenga_usd','vencida_usd']
+].sum()
+tabla['morosidad_pct'] = 100 * (
+    tabla['no_devenga_usd'] + tabla['vencida_usd']
+) / tabla['total_usd']
+print(tabla[['total_usd','morosidad_pct']].round(2))
+```
+
+**Pregunta de gobierno: ¿cómo utilizar los indicadores?**
+
+Un banco no debería aumentar automáticamente el crédito al segmento con
+menor morosidad observada sin evaluar rentabilidad, garantías y riesgo
+de selección. Del mismo modo, un gestor de inversiones del BCE debe
+cumplir elegibilidad y límites, y analizar seguridad, liquidez y
+rentabilidad en el contexto de la dolarización. El BCE no puede emitir
+billetes USD para financiar pérdidas crediticias.
+
+### Taller . Una cartera con créditos buenos y malos
+
+**Duración asincrónica: 60 minutos.** Usa `02_creditos_ficticios.csv`,
+`03_historial_mensual_ficticio.csv` y `04_recuperaciones_ficticias.csv`;
+no se trata de clientes reales. Responde cada pregunta con una cifra y
+una interpretación.
+
+**Actividad A: conoce la cartera**
+
+1.  ¿Cuántos créditos hay en cada segmento?
+2.  ¿Cuál es el monto desembolsado inicialmente por segmento?
+3.  Sigue el crédito `CR00005` mes a mes. ¿Cuándo aparecen atrasos?
+
+**Ejercicio en Python**
+
+``` python
+print(creditos.groupby('segmento')['id_credito'].count())
+print(creditos.groupby('segmento')['monto_desembolsado_usd'].sum())
+
+un_credito = historial[historial['id_credito'] == 'CR00005']
+print(un_credito[['fecha_corte','dias_mora','saldo_capital_usd','estado']])
+```
+
+**Actividad B: calcula la PD histórica por segmento**
+
+Recuerda seleccionar **el primer default** y dividirlo por el número de
+créditos de la cohorte inicial de cada segmento.
+
+**Ejercicio en Python**
+
+``` python
+ids_default = primer_default[['id_credito']]
+por_segmento = creditos.merge(ids_default, on='id_credito', how='left', indicator=True)
+por_segmento['incumplio'] = por_segmento['_merge'] == 'both'
+print(por_segmento.groupby('segmento')['incumplio'].mean() * 100)
+```
+
+**Actividad C: compara pérdidas esperadas con supuestos claros**
+
+Una tasa de incumplimiento histórica de la cohorte no es todavía una PD
+individual prospectiva, y una LGD parcial no predice necesariamente la
+recuperación final. Para **un escenario docente de cartera**
+utilizaremos su PD histórica global, la LGD provisional global y el
+saldo inicial desembolsado total como exposición de referencia; **no lo
+llamaremos EL oficial**.
+
+**Ejercicio en Python**
+
+``` python
+exposicion_referencia = creditos['monto_desembolsado_usd'].sum()
+el_escenario = pd_historica * lgd_observada * exposicion_referencia
+print('Exposición inicial (USD):', round(exposicion_referencia, 2))
+print('Pérdida esperada ilustrativa (USD):', round(el_escenario, 2))
+
+pd_estres = min(1, pd_historica * 1.5)
+el_estres = pd_estres * lgd_observada * exposicion_referencia
+print('EL escenario de estrés (USD):', round(el_estres, 2))
+```
+
+**Interpretación obligatoria:** este escenario combina magnitudes
+estimadas de datos ficticios y una exposición al desembolso inicial para
+enseñar la fórmula. No es el modelo regulatorio PD×LGD×EAD al default de
+una institución real. Una aplicación profesional utilizaría PD por
+horizonte y segmentos homogéneos, EAD esperada al default y LGD
+correctamente descontada.
+
+**Actividad D: aplicar ideas al BCE**
+
+En un párrafo explica por qué el BCE debe evaluar riesgo de contraparte
+de sus inversiones y por qué **no** debe utilizar la morosidad de
+microcrédito privado como PD de un emisor de bonos del Tesoro
+estadounidense.
+
+**Preguntas de comprobación al terminar cada tema**
+
+| Tema | Pregunta fundamental | Pregunta de profundización |
+|------------------------|------------------------|------------------------|
+| 2.1 | ¿Qué significa que DSCR sea 1,20? | ¿Por qué no equivale a PD? |
+| 2.2 | ¿Qué diferencia hay entre mora y default? | ¿Cómo cambia la PD si cambia el horizonte? |
+| 2.3 | ¿La EAD es siempre el monto desembolsado? | ¿Qué pasa con líneas no utilizadas? |
+| 2.4 | ¿Por qué LGD depende de recuperaciones? | ¿Por qué una LGD provisional no es definitiva? |
+| 2.5 | ¿Dónde está concentrada la cartera? | ¿Qué sesgos introduce cambiar el universo de bancos? |
+
+**Conexión con las demás unidades**
+
+**U1:** los balances y el capital explican por qué una pérdida importa.\
+**U3:** un incumplimiento también retrasa entradas de efectivo,
+afectando liquidez.\
+**U4:** un activo puede perder valor por movimientos del mercado incluso
+sin default.\
+**U5:** se integran indicadores, límites y decisiones en un reporte
+institucional.
 
 # Unidad 3. Riesgo de Liquidez
 
@@ -944,10 +1709,3 @@ competencia formal para hacerlo.
 ## 5.4 Evaluación integral
 
 ## 5.5 Reportes ejecutivos
-
-Quarto enables you to weave together content and executable code into a
-finished document. To learn more about Quarto see <https://quarto.org>.
-
-```{r}
-1 + 1
-```
