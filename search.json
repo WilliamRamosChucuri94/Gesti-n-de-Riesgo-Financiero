@@ -60,35 +60,35 @@
     "href": "index.html#liquidez-institucional",
     "title": "Gestión de Riesgos Financieros",
     "section": "3.1 Liquidez Institucional",
-    "text": "3.1 Liquidez Institucional"
+    "text": "3.1 Liquidez Institucional\n\nRiesgo de liquidez de fondeo: no disponer de dinero en el momento de afrontar obligaciones\nRiesgo de liquidez de mercado: tener que vender inversiones con descuento debido a un mercado poco profundo. Una entidad puede tener patrimonio positivo y aun así afrontar tensiones de caja.\n\nEl balance tiene las siguientes cuentas:\n\n1101 caja\n1102 reservas para encaje\n1103 saldos en otros bancos\n1104 efectos de cobro\n13 inversiones\n14 cartera, y pasivos de depósitos y otras obligaciones.\nLos importes contables no equivalen automáticamente a efectivo libre.\n\nCaso A: banco pequeño.\nCon USD 100 de caja\nUSD 40 de cobros al mes y USD 170 de retiros, la liquidez final es (100+40-170=-30):\nFaltan USD 30.\nUn activo valioso que no se puede vender hoy no resuelve el descalce."
   },
   {
     "objectID": "index.html#flujos-financieros",
     "href": "index.html#flujos-financieros",
     "title": "Gestión de Riesgos Financieros",
     "section": "3.2 Flujos financieros",
-    "text": "3.2 Flujos financieros"
+    "text": "3.2 Flujos financieros\n\nEl inventario de saldos responde ¿qué existe?\nEl calendario de flujos responde ¿cuándo se convierte realmente en entrada o salida?\nNo se debe ubicar automáticamente todo saldo a 30 días o &gt;12 meses.\n\nEn los depósitos a la vista, el saldo completo NO vence automáticamente. Se usa la tasa de retiro conductual para modelar un escenario esperado. En depósitos a plazo se utiliza el importe del vencimiento asignado a la banda, no una tasa de retiro voluntaria."
   },
   {
     "objectID": "index.html#brechas-de-liquidez",
     "href": "index.html#brechas-de-liquidez",
     "title": "Gestión de Riesgos Financieros",
     "section": "3.3 Brechas de liquidez",
-    "text": "3.3 Brechas de liquidez"
+    "text": "3.3 Brechas de liquidez\nSe definen bandas:\n\n1–7\n8–15\n16–30 días\nmes 2\nmes 3\nmeses 4–6\nmeses 7–12\nmás de 12 meses.\n\n\\[\nG_t = E_t-S_t;\\qquad G_t^{acum}=\\sum_{j\\le t}G_j;\\qquad L_t=L_0+G_t^{acum}\n\\]\nDonde:\n\n\\(E_t\\): cobros esperados utilizables, ajustados si el supuesto de recuperación es inferior al 100%.\n\\(S_t\\): pagos contractuales o retiros simulados conforme a su clasificación.\n\\(L_0\\): efectivo y otros fondos inicialmente utilizables que no reaparecen como cobros."
   },
   {
     "objectID": "index.html#indicadores",
     "href": "index.html#indicadores",
     "title": "Gestión de Riesgos Financieros",
     "section": "3.4 Indicadores",
-    "text": "3.4 Indicadores"
+    "text": "3.4 Indicadores\nALAC = Activos Líquidos de Alta Calidad; no son pasivos. Deben ser admisibles, libres de cargas, valorables y disponibles bajo tensión. Los 30 días describen el horizonte de escenario de salida, no necesariamente el vencimiento de los bonos.\nNo se clasifican por el mero vencimiento a 30 días: un bono a 2 años puede ser vendible hoy y elegible, mientras un bono que vence mañana pero está prendado puede no ser utilizable.\nFactor Fase 1 = Fracción regulatoria del valor que se reconoce. Para un título que cumple la categoría que tiene factor 85%, (ALAC=100=85). El 15% de reducción es margen prudencial, no pérdida realizada.\n100% efectivo; 0% encaje normativo; 85% para ciertos títulos con calificación superior a A+; 50% para ciertas inversiones de BBB- a A+ bajo las condiciones de la norma adjunta.\nLa tasa no autoriza a clasificar automáticamente cualquier bono.\n\\[\nICL = \frac{ALAC}{Salidas_{30}-\\min(Entradas_{30},0.75\\,Salidas_{30})}   imes100.\n\\]\n\nEl mínimo en la norma utilizada es 100%.\nLa cobertura regula un horizonte de tensión de 30 días\nNO significa que todos los ALAC deban vencer en 30 días.\nUna entrada por un bono ya reconocido como ALAC se excluye, y una inversión pignorada se deja fuera de ALAC y de entradas hasta confirmar liberación y derecho de cobro disponible.\n\nLa tasa de salida Fase 1 en C_PASIVOS refleja un choque regulatorio distinto a la tasa de retiro esperada del escenario de brecha.\nEn una categoría de depósitos asegurados PN se usa 5% en el ICL; un 2% de retiros esperados es una hipótesis del docente.\nLa salida no corresponde a los pasivos «convertidos en ALAC»: los pasivos nunca son ALAC.\nIEL: los índices estructurales de primera/segunda línea (artículos 1–5) requieren desglose de subcuentas, obligaciones por vencimiento y volatilidad de fuentes de fondeo. El balance agregado no contiene eso; se enseña la lógica sin fabricar un valor oficial.\nNSFR: financiación estable disponible / requerida (Basilea III); útil para comparación teórica, no calculable regulatoriamente con nuestro detalle y no se confunde con ICL\nPregunta al grupo: si el ICL cae, ¿se recomienda inmediatamente vender todo el portafolio?"
   },
   {
     "objectID": "index.html#stress-testing",
     "href": "index.html#stress-testing",
     "title": "Gestión de Riesgos Financieros",
     "section": "3.5 Stress testing",
-    "text": "3.5 Stress testing"
+    "text": "3.5 Stress testing\nRealizamos el escenario base y dos choques pedagógicos de +5% y +10% en salidas ICL. No son escenarios normativos oficiales ni pronósticos del banco. Observamos la sensibilidad del ICL ante mayores necesidades. Si cae por debajo de 100%, el escenario simulado tendría menor cobertura que el umbral de la norma; ello NO demuestra incumplimiento real de Banco Pichincha.\nMedidas a discutir: venta de títulos realmente libres y elegibles, operaciones de mercado, liquidez contingente, reducción de concentración de fondeo, diversificación temporal y actualización del plan de contingencia; todas sujetas a restricciones y costos."
   },
   {
     "objectID": "index.html#tasas-de-interés",
