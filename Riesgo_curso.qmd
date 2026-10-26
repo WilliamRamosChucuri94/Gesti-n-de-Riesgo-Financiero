@@ -1383,15 +1383,185 @@ institucional.
 
 # Unidad 3. Riesgo de Liquidez
 
+**¿Por qué un banco solvente puede quedarse sin dinero?**
+
+En el balance el patrimonio y los activos se miden como existencias en
+una fecha, pero las obligaciones se pagan en momentos concretos.
+
+Un préstamo a cinco años es un activo contable pero no proporciona
+necesariamente caja para atender retiros mañana.
+
+La liquidez depende del **tiempo**, la **convertibilidad** y la
+**disponibilidad legal**.
+
+Diferenciamos riesgo de fondeo (no poder conseguir efectivo para pagar)
+y riesgo de mercado (tener que vender con pérdidas). Un mismo evento,
+como una retirada concentrada de depósitos, puede provocar ambos
+riesgos.
+
+**Ejemplo:** Un banco tiene USD 100 millones de caja, USD 600 millones
+de cartera a largo plazo y USD 550 millones de depósitos exigibles.
+**¿Es suficiente decir que sus activos superan sus pasivos?** 
+
 ## 3.1 Liquidez Institucional
+
+-   **Riesgo de liquidez de fondeo**: no disponer de dinero en el
+    momento de afrontar obligaciones
+
+-   **Riesgo de liquidez de mercado**: tener que vender inversiones con
+    descuento debido a un mercado poco profundo. Una entidad puede tener
+    patrimonio positivo y aun así afrontar tensiones de caja.
+
+El balance tiene las siguientes cuentas:
+
+-   1101 caja
+
+-   1102 reservas para encaje
+
+-   1103 saldos en otros bancos
+
+-   1104 efectos de cobro
+
+-   13 inversiones
+
+-   14 cartera, y pasivos de depósitos y otras obligaciones.
+
+-   **Los importes contables no equivalen automáticamente a efectivo
+    libre.**
+
+**Caso A: banco pequeño.**
+
+Con USD 100 de caja
+
+USD 40 de cobros al mes y USD 170 de retiros, la liquidez final es
+(100+40-170=-30):
+
+Faltan USD 30.
+
+**Un activo valioso que no se puede vender hoy no resuelve el
+descalce.**
 
 ## 3.2 Flujos financieros
 
+-   El inventario de saldos responde **¿qué existe?**
+
+-   El calendario de flujos responde **¿cuándo se convierte realmente en
+    entrada o salida?**
+
+-   No se debe ubicar automáticamente todo saldo a 30 días o \>12 meses.
+
+En los depósitos **a la vista**, el saldo completo NO vence
+automáticamente. Se usa la tasa de retiro conductual para modelar un
+escenario esperado. En depósitos a plazo se utiliza el importe del
+vencimiento asignado a la banda, no una tasa de retiro voluntaria.
+
+![](images/clipboard-1424746131.png)
+
 ## 3.3 Brechas de liquidez
+
+Se definen bandas:
+
+-   **1–7**
+
+-   **8–15**
+
+-   **16–30 días**
+
+-   **mes 2**
+
+-   **mes 3**
+
+-   **meses 4–6**
+
+-   **meses 7–12**
+
+-   **más de 12 meses**.
+
+$$
+G_t = E_t-S_t;\qquad G_t^{acum}=\sum_{j\le t}G_j;\qquad L_t=L_0+G_t^{acum}
+$$
+
+Donde:
+
+-   $E_t$: cobros esperados utilizables, ajustados si el supuesto de
+    recuperación es inferior al 100%.
+
+-   $S_t$: pagos contractuales o retiros simulados conforme a su
+    clasificación.
+
+-   $L_0$: efectivo y otros fondos inicialmente utilizables **que no
+    reaparecen como cobros**.
 
 ## 3.4 Indicadores
 
+**ALAC** = Activos Líquidos de Alta Calidad; no son pasivos. Deben ser
+admisibles, libres de cargas, valorables y disponibles bajo tensión. Los
+30 días describen el horizonte de escenario de salida, no necesariamente
+el vencimiento de los bonos.
+
+**No se clasifican por el mero vencimiento a 30 días: un bono a 2 años
+puede ser vendible hoy y elegible, mientras un bono que vence mañana
+pero está prendado puede no ser utilizable.**
+
+**Factor Fase 1** = Fracción regulatoria del valor que se reconoce. Para
+un título que cumple la categoría que tiene factor 85%, (ALAC=100=85).
+El 15% de reducción es margen prudencial, no pérdida realizada.
+
+100% efectivo; 0% encaje normativo; 85% para ciertos títulos con
+calificación superior a A+; 50% para ciertas inversiones de BBB- a A+
+bajo las condiciones de la norma adjunta.
+
+**La tasa no autoriza a clasificar automáticamente cualquier bono**.
+
+$$
+ICL = rac{ALAC}{Salidas_{30}-\min(Entradas_{30},0.75\,Salidas_{30})}   imes100.
+$$
+
+-   El mínimo en la norma utilizada es **100%**.
+
+-   La cobertura regula un horizonte de tensión de 30 días
+
+-   **NO significa que todos los ALAC deban vencer en 30 días**.
+
+-   Una entrada por un bono ya reconocido como ALAC se excluye, y una
+    inversión pignorada se deja fuera de ALAC y de entradas hasta
+    confirmar liberación y derecho de cobro disponible.
+
+**La tasa de salida Fase 1** en `C_PASIVOS` refleja un choque
+regulatorio distinto a la tasa de retiro esperada del escenario de
+brecha.
+
+En una categoría de depósitos asegurados PN se usa 5% en el ICL; un 2%
+de retiros esperados es una **hipótesis del docente**.
+
+La salida no corresponde a los pasivos «convertidos en ALAC»: los
+pasivos nunca son ALAC.
+
+**IEL**: los índices estructurales de primera/segunda línea (artículos
+1–5) requieren desglose de subcuentas, obligaciones por vencimiento y
+volatilidad de fuentes de fondeo. El balance agregado no contiene eso;
+se enseña la lógica sin fabricar un valor oficial.
+
+**NSFR**: financiación estable disponible / requerida (Basilea III);
+útil para comparación teórica, no calculable regulatoriamente con
+nuestro detalle y no se confunde con ICL
+
+**Pregunta al grupo: si el ICL cae, ¿se recomienda inmediatamente vender
+todo el portafolio?** 
+
 ## 3.5 Stress testing
+
+Realizamos el escenario base y dos choques pedagógicos de **+5%** y
+**+10%** en salidas ICL. No son escenarios normativos oficiales ni
+pronósticos del banco. Observamos la sensibilidad del ICL ante mayores
+necesidades. Si cae por debajo de 100%, el escenario **simulado**
+tendría menor cobertura que el umbral de la norma; ello **NO demuestra
+incumplimiento real de Banco Pichincha**.
+
+Medidas a discutir: venta de títulos realmente libres y elegibles,
+operaciones de mercado, liquidez contingente, reducción de concentración
+de fondeo, diversificación temporal y actualización del plan de
+contingencia; todas sujetas a restricciones y costos.
 
 # Unidad 4. Riesgo de Mercado
 
