@@ -91,39 +91,123 @@
     "text": "3.5 Stress testing\nRealizamos el escenario base y dos choques pedagógicos de +5% y +10% en salidas ICL. No son escenarios normativos oficiales ni pronósticos del banco. Observamos la sensibilidad del ICL ante mayores necesidades. Si cae por debajo de 100%, el escenario simulado tendría menor cobertura que el umbral de la norma; ello NO demuestra incumplimiento real de Banco Pichincha.\nMedidas a discutir: venta de títulos realmente libres y elegibles, operaciones de mercado, liquidez contingente, reducción de concentración de fondeo, diversificación temporal y actualización del plan de contingencia; todas sujetas a restricciones y costos."
   },
   {
-    "objectID": "index.html#tasas-de-interés",
-    "href": "index.html#tasas-de-interés",
+    "objectID": "index.html#por-qué-suben-y-bajan-los-precios-de-los-bonos",
+    "href": "index.html#por-qué-suben-y-bajan-los-precios-de-los-bonos",
     "title": "Gestión de Riesgos Financieros",
-    "section": "4.1 Tasas de Interés",
-    "text": "4.1 Tasas de Interés"
+    "section": "¿Por qué suben y bajan los precios de los bonos?",
+    "text": "¿Por qué suben y bajan los precios de los bonos?\nUn bono de tasa fija promete pagos futuros predeterminados. Si aparece un nuevo bono que paga intereses más altos, el bono antiguo de cupón bajo resulta menos atractivo: su precio tiende a bajar para ofrecer un rendimiento competitivo. Si las tasas de mercado bajan, el precio del bono antiguo tiende a subir.\nEjemplo: un bono paga USD 50 dentro de un año y USD 1.050 dentro de dos años. Con una tasa del 5%:\n\\[\nP_{5\\%}=\\frac{50}{1,05}+\\frac{1050}{1,05^2}=1000\n\\]\nCon tasa de mercado del 6%:\n\\[\nP_{6\\%}=\\frac{50}{1,06}+\\frac{1050}{1,06^2}\\approx981,67\n\\]\nInterpretación: el bono no dejó de pagar, pero hoy vale menos porque los inversionistas exigen un rendimiento mayor. Esta es una pérdida por riesgo de mercado, no necesariamente por riesgo de crédito.\nEn la base adicional TLT_PRECIOS.csv tenemos precios de un fondo de bonos del Tesoro; no es un bono individual y su comportamiento no permite calcular por sí solo la duración de un bono particular.\nPregunta al grupo: si mañana sube la tasa de interés que exigen los inversionistas, ¿en qué dirección esperaríamos que se mueva el precio de un bono de tasa fija?"
   },
   {
-    "objectID": "index.html#tipo-de-cambio",
-    "href": "index.html#tipo-de-cambio",
+    "objectID": "index.html#qué-es-una-acción",
+    "href": "index.html#qué-es-una-acción",
     "title": "Gestión de Riesgos Financieros",
-    "section": "4.2 Tipo de cambio",
-    "text": "4.2 Tipo de cambio"
+    "section": "¿Qué es una acción?",
+    "text": "¿Qué es una acción?\nUna acción representa participación en una empresa. Su cotización fluctúa porque cambia lo que compradores y vendedores están dispuestos a pagar por ella. Por eso, para evaluar el riesgo de Tesla, no alcanza con saber cuánto cuesta una acción: necesitamos estudiar cómo se mueve su precio entre días de negociación.\n\n\n\nPrecio histórico de Tesla"
   },
   {
-    "objectID": "index.html#volatilidad",
-    "href": "index.html#volatilidad",
+    "objectID": "index.html#el-rendimiento-logarítmico-diario",
+    "href": "index.html#el-rendimiento-logarítmico-diario",
     "title": "Gestión de Riesgos Financieros",
-    "section": "4.3 Volatilidad",
-    "text": "4.3 Volatilidad"
+    "section": "El rendimiento logarítmico diario",
+    "text": "El rendimiento logarítmico diario\nSi ayer una acción costaba USD 100 y hoy cuesta USD 105, la subida simple es del 5%. Para nuestro análisis estadístico utilizaremos el rendimiento logarítmico, que transforma la relación entre precios mediante el logaritmo natural.\n\\[\nr_t=\\ln\\left(\\frac{P_t}{P_{t-1}}\\right)\n\\]\nDonde \\(P_t\\) es el precio actual y \\(P_{t-1}\\) es el precio de la negociación anterior. En el ejemplo:\n\\[\nr_t=\\ln(105/100)=0,04879\\approx4,879\\%\n\\]\nAdvertencia: ese 4,879% es un rendimiento logarítmico, no la variación simple del 5%. Para regresar al rendimiento simple se utiliza \\(e^{r_t}-1\\). Los retornos logarítmicos pueden sumarse a través del tiempo, pero no deben sumarse directamente entre activos como si fueran rendimientos de un portafolio."
   },
   {
-    "objectID": "index.html#sensibilidad",
-    "href": "index.html#sensibilidad",
+    "objectID": "index.html#qué-mide-la-volatilidad",
+    "href": "index.html#qué-mide-la-volatilidad",
     "title": "Gestión de Riesgos Financieros",
-    "section": "4.4 Sensibilidad",
-    "text": "4.4 Sensibilidad"
+    "section": "¿Qué mide la volatilidad?",
+    "text": "¿Qué mide la volatilidad?\nLa volatilidad muestra cuánto se dispersan los rendimientos alrededor de su promedio. Una inversión con grandes movimientos diarios presenta alta volatilidad; otra que cambia poco tiene volatilidad baja.\n\\[\n\\bar r=\\frac{1}{n}\\sum_{t=1}^{n}r_t\n\\]\n\\[\ns=\\sqrt{\\frac{\\sum_{t=1}^{n}(r_t-\\bar r)^2}{n-1}}\n\\]\nLa volatilidad no distingue entre subidas y bajadas: considera ambas como variaciones. Por eso más volatilidad no implica que la acción necesariamente vaya a caer, pero sí que presenta mayor incertidumbre en sus cambios de precio.\nPregunta: ¿preferirían una acción que varía alrededor de 1% diario o una que alterna cambios de +8% y -8%, si quisieran evitar sobresaltos?"
   },
   {
-    "objectID": "index.html#var",
-    "href": "index.html#var",
+    "objectID": "index.html#qué-es-la-cola-de-una-distribución",
+    "href": "index.html#qué-es-la-cola-de-una-distribución",
     "title": "Gestión de Riesgos Financieros",
-    "section": "4.5 VaR",
-    "text": "4.5 VaR"
+    "section": "¿Qué es la cola de una distribución?",
+    "text": "¿Qué es la cola de una distribución?\nUna distribución de rendimientos muestra qué variaciones fueron frecuentes y cuáles raras. La parte izquierda contiene rendimientos muy negativos: la cola izquierda de rendimientos. Si convertimos los rendimientos en pérdidas monetarias positivas, esas pérdidas extremas aparecen a la derecha de la distribución de pérdidas.\n\n\n\nDistribución de rendimientos logarítmicos de Tesla; línea punteada en percentil cinco\n\n\nEl percentil 5 de rendimientos deja aproximadamente 5% de observaciones por debajo de él. El VaR se obtiene convirtiendo ese umbral negativo en una pérdida monetaria. No podemos prometer que esas pérdidas extremas estarán limitadas por el VaR.\nNuestra inversión inicial es \\(V_0=\\text{USD }100.000\\). Para pasar de un rendimiento logarítmico \\(q\\) al valor final usamos:\n\\[\nV_1=V_0 e^q\n\\]\nY para expresar la pérdida como una cantidad positiva:\n\\[\n\\boxed{VaR=V_0(1-e^q)}\n\\]\nEn la clase trabajaremos con confianza del 95%, horizonte de un día y exactamente los mismos datos iniciales para comparar métodos."
+  },
+  {
+    "objectID": "index.html#método-1-var-histórico",
+    "href": "index.html#método-1-var-histórico",
+    "title": "Gestión de Riesgos Financieros",
+    "section": "Método 1: VaR histórico",
+    "text": "Método 1: VaR histórico\nPregunta: ¿qué pérdidas muestran los rendimientos de los días observados?\n\nCalculamos rendimientos logarítmicos de Tesla para todos los días disponibles.\nIdentificamos el percentil 5% de esos rendimientos.\nConvertimos ese percentil a una pérdida en USD.\n\n\\[\nq_H=\\operatorname{Percentil}_{5\\%}(r_1,\\ldots,r_n)\n\\]\n\\[\nVaR_H=100.000(1-e^{q_H})\n\\]\nLimitación: si el futuro es muy diferente de la historia observada, este método puede subestimar riesgos nuevos."
+  },
+  {
+    "objectID": "index.html#método-2-var-paramétrico",
+    "href": "index.html#método-2-var-paramétrico",
+    "title": "Gestión de Riesgos Financieros",
+    "section": "Método 2: VaR paramétrico",
+    "text": "Método 2: VaR paramétrico\nPregunta: ¿qué umbral obtenemos si resumimos la serie mediante media, volatilidad y una distribución normal?\nSe calcula la media \\(\\bar r\\) y la desviación estándar \\(s\\) de los mismos rendimientos logarítmicos. Suponiendo normalidad:\n\\[\nq_P=\\bar r+z_{0,05}s\\qquad z_{0,05}\\approx-1,64485\n\\]\n\\[\nVaR_P=100.000(1-e^{q_P})\n\\]\nLimitación: la distribución normal puede subestimar eventos extremos si la serie tiene colas más pesadas."
+  },
+  {
+    "objectID": "index.html#método-3-var-monte-carlo",
+    "href": "index.html#método-3-var-monte-carlo",
+    "title": "Gestión de Riesgos Financieros",
+    "section": "Método 3: VaR Monte Carlo",
+    "text": "Método 3: VaR Monte Carlo\nPregunta: ¿qué pasa si generamos muchos días posibles según un modelo estadístico?\nEn lugar de utilizar únicamente los días observados, generamos 1.000 escenarios de rendimientos logarítmicos:\n\\[\nr^{(j)}=\\bar r+sZ_j,\\qquad Z_j\\sim N(0,1)\n\\]\nEncontramos el percentil 5% de los 1.000 resultados simulados y lo convertimos a dólares.\n\\[\nVaR_{MC}=100.000\\left(1-e^{\\operatorname{Percentil}_{5\\%}(r^{(1)},\\ldots,r^{(1000)})}\\right)\n\\]\nPara que todos obtengan exactamente los mismos escenarios no generamos números aleatorios distintos en cada computadora: el archivo MC_Z_FIJA.csv contiene los 1.000 valores de la normal estándar que utilizaremos tanto en Excel como en Colab.\nMuy importante: Monte Carlo no necesariamente es «más verdadero». En esta actividad supone rendimientos logarítmicos normales, igual que el VaR paramétrico, y además incorpora variación por el número finito de simulaciones."
+  },
+  {
+    "objectID": "index.html#rendimiento-de-dos-inversiones",
+    "href": "index.html#rendimiento-de-dos-inversiones",
+    "title": "Gestión de Riesgos Financieros",
+    "section": "Rendimiento de dos inversiones",
+    "text": "Rendimiento de dos inversiones\nSupongamos que el 50 % del portafolio está en Tesla y el 50 % en NVIDIA. Si en un día Tesla sube 4 % y NVIDIA baja 2 %, el rendimiento simple del portafolio es:\n\\[\nR_{p,t}=w_1R_{1,t}+w_2R_{2,t}=0,5(0,04)+0,5(-0,02)=0,01.\n\\]\nComo en el curso utilizamos rendimientos logarítmicos, convertimos después el rendimiento total:\n\\[\nr_{p,t}=\\ln(1+R_{p,t})=\\ln(1,01)=0,00995.\n\\]\nNo promediamos directamente los logaritmos individuales: eso no representa exactamente el rendimiento de un portafolio con pesos constantes y rebalanceo diario."
+  },
+  {
+    "objectID": "index.html#qué-es-la-correlación",
+    "href": "index.html#qué-es-la-correlación",
+    "title": "Gestión de Riesgos Financieros",
+    "section": "¿Qué es la correlación?",
+    "text": "¿Qué es la correlación?\nLa correlación indica si los rendimientos de dos activos tienden a moverse juntos. Oscila entre \\(-1\\) y \\(+1\\).\n\nCercana a \\(+1\\): suelen subir y bajar conjuntamente.\nCercana a \\(0\\): poca relación lineal.\nCercana a \\(-1\\): suelen moverse en direcciones opuestas.\n\nCuando los activos no se mueven exactamente juntos, combinarlos puede reducir la volatilidad de un portafolio: es la diversificación. Una correlación baja no garantiza ausencia de pérdidas."
+  },
+  {
+    "objectID": "index.html#qué-es-la-covarianza",
+    "href": "index.html#qué-es-la-covarianza",
+    "title": "Gestión de Riesgos Financieros",
+    "section": "¿Qué es la covarianza?",
+    "text": "¿Qué es la covarianza?\nLa covarianza también mide cómo se mueven conjuntamente dos series, pero depende de la escala y sus unidades. La correlación normaliza esa relación para hacerla más sencilla de comparar.\n\\[\n\\operatorname{Cov}(r_1,r_2)=\\rho_{12}\\,\\sigma_1\\sigma_2\n\\]\nPara un portafolio de dos activos, la volatilidad aproximada a partir de los log-retornos individuales es:\n\\[\n\\sigma_p\\approx\\sqrt{w_1^2\\sigma_1^2+w_2^2\\sigma_2^2+2w_1w_2\\operatorname{Cov}(r_1,r_2)}.\n\\]\nCon tres activos empleamos una matriz de covarianzas \\(\\Sigma\\):\n\\[\n\\sigma_p\\approx\\sqrt{\\boldsymbol{w}^{\\mathsf T}\\Sigma\\boldsymbol{w}}.\n\\]\nEsta fórmula describe una aproximación lineal al riesgo del portafolio cuando modelamos rendimientos logarítmicos individuales. Para nuestros tres VaR utilizaremos el rendimiento logarítmico observado del portafolio, construido a partir de sus rendimientos simples ponderados, manteniendo la misma convención de cálculo."
+  },
+  {
+    "objectID": "index.html#por-qué-cambia-el-var-cuando-añadimos-activos",
+    "href": "index.html#por-qué-cambia-el-var-cuando-añadimos-activos",
+    "title": "Gestión de Riesgos Financieros",
+    "section": "¿Por qué cambia el VaR cuando añadimos activos?",
+    "text": "¿Por qué cambia el VaR cuando añadimos activos?\nEl VaR histórico usa los movimientos conjuntos observados. El paramétrico utiliza la distribución del rendimiento del portafolio, que ya incorpora indirectamente los movimientos conjuntos. En Monte Carlo multivariado construiremos escenarios para cada activo usando su matriz de covarianzas; la transformación de Cholesky nos permite que los escenarios reflejen esas relaciones.\nNo significa que Monte Carlo prediga exactamente una crisis: conserva las correlaciones estimadas bajo un modelo normal, que pueden cambiar durante episodios de tensión."
+  },
+  {
+    "objectID": "index.html#código-python-para-copiar-a-google-colab",
+    "href": "index.html#código-python-para-copiar-a-google-colab",
+    "title": "Gestión de Riesgos Financieros",
+    "section": "Código Python para copiar a Google Colab",
+    "text": "Código Python para copiar a Google Colab\nDescarga y carga los CSV incluidos. Este Quarto solo muestra código, no ejecuta Jupyter. Copia cada bloque a Google Colab, que es donde aparecerán los cálculos y gráficos.\nimport numpy as np\nimport pandas as pd\nimport matplotlib.pyplot as plt\nfrom statistics import NormalDist\n\nMONTO = 100_000\nCONFIANZA = 0.95\nZ = pd.read_csv('SHOCKS_MC_1000.csv')[['Z1','Z2','Z3']].to_numpy()\n\ndef cargar(ticker):\n    return pd.read_csv(f'{ticker}_PRECIOS.csv', parse_dates=['Fecha']).set_index('Fecha')['Precio_USD'].rename(ticker)\n\ndef analizar(tickers):\n    precios = pd.concat([cargar(t) for t in tickers], axis=1, join='inner').dropna()\n    retornos_log = np.log(precios / precios.shift(1)).dropna()\n    retornos_simples = np.expm1(retornos_log)\n    portafolio_simple = retornos_simples.mean(axis=1)  # pesos iguales y rebalanceo diario\n    portafolio_log = np.log1p(portafolio_simple)\n    matriz_cov = retornos_log.cov()\n    matriz_corr = retornos_log.corr()\n    print('MATRIZ DE COVARIANZAS'); print(matriz_cov.round(7))\n    print('MATRIZ DE CORRELACIONES'); print(matriz_corr.round(3))\n    print('Interpretación: correlación positiva alta = menor beneficio potencial de diversificación.')\n    media = retornos_log.mean().to_numpy()\n    L = np.linalg.cholesky(matriz_cov.to_numpy())\n    retornos_simulados = media + Z[:, :len(tickers)] @ L.T\n    # Monte Carlo de rendimientos log CONJUNTOS preservando las correlaciones modeladas.\n    portafolio_simulado = np.log1p(np.expm1(retornos_simulados).mean(axis=1))\n    q_hist = np.quantile(portafolio_log.to_numpy(), 0.05, method='linear')\n    q_par = portafolio_log.mean() + NormalDist().inv_cdf(0.05) * portafolio_log.std(ddof=1)\n    q_mc = np.quantile(portafolio_simulado, 0.05, method='linear')\n    valores = MONTO * (1 - np.exp([q_hist, q_par, q_mc]))\n    salida = pd.DataFrame({'Método':['Histórico','Paramétrico','Monte Carlo'], 'VaR_USD':valores})\n    print(salida.to_string(index=False, formatters={'VaR_USD': '{:,.2f}'.format}))\n    print('VaR: umbral que puede superarse en aproximadamente el 5% de días bajo el modelo.')\n    return precios, retornos_log, matriz_cov, matriz_corr, salida"
+  },
+  {
+    "objectID": "index.html#etapa-1.-tesla-un-activo-y-tres-var",
+    "href": "index.html#etapa-1.-tesla-un-activo-y-tres-var",
+    "title": "Gestión de Riesgos Financieros",
+    "section": "Etapa 1. Tesla: un activo y tres VaR",
+    "text": "Etapa 1. Tesla: un activo y tres VaR\nprecios, rendimientos, cov, corr, resultado = analizar(['TSLA'])"
+  },
+  {
+    "objectID": "index.html#etapa-2.-tesla-nvidia-correlación-y-tres-var",
+    "href": "index.html#etapa-2.-tesla-nvidia-correlación-y-tres-var",
+    "title": "Gestión de Riesgos Financieros",
+    "section": "Etapa 2. Tesla + NVIDIA: correlación y tres VaR",
+    "text": "Etapa 2. Tesla + NVIDIA: correlación y tres VaR\nprecios, rendimientos, cov, corr, resultado = analizar(['TSLA', 'NVDA'])\nMira la correlación entre ambas acciones antes de interpretar si el VaR disminuyó o aumentó."
+  },
+  {
+    "objectID": "index.html#etapa-3.-tesla-nvidia-oro-gld-matriz-de-tres-activos",
+    "href": "index.html#etapa-3.-tesla-nvidia-oro-gld-matriz-de-tres-activos",
+    "title": "Gestión de Riesgos Financieros",
+    "section": "Etapa 3. Tesla + NVIDIA + oro (GLD): matriz de tres activos",
+    "text": "Etapa 3. Tesla + NVIDIA + oro (GLD): matriz de tres activos\nprecios, rendimientos, cov, corr, resultado = analizar(['TSLA', 'NVDA', 'GLD'])"
+  },
+  {
+    "objectID": "index.html#taller-individual.-nike",
+    "href": "index.html#taller-individual.-nike",
+    "title": "Gestión de Riesgos Financieros",
+    "section": "Taller individual. Nike",
+    "text": "Taller individual. Nike\nCon NKE_PRECIOS.csv, encuentra la media, volatilidad y los tres VaR. Primero hazlo en Excel y luego verifica ejecutando:\nprecios, rendimientos, cov, corr, resultado = analizar(['NKE'])"
   },
   {
     "objectID": "index.html#capital-económico",

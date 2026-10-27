@@ -54,7 +54,7 @@ $$
 *Valores en millones de USD.*
 
 | Activos           | Millones USD | Pasivos y patrimonio           | Millones USD |
-|:-----------------|-----------------:|:------------------|-----------------:|
+|:---------------|---------------:|:-------------------------|---------------:|
 | Créditos          |          700 | Depósitos                      |          850 |
 | Inversiones       |          200 | Otras obligaciones             |           50 |
 | Efectivo          |          100 | Patrimonio                     |          100 |
@@ -1565,15 +1565,349 @@ contingencia; todas sujetas a restricciones y costos.
 
 # Unidad 4. Riesgo de Mercado
 
-## 4.1 Tasas de Interés
 
-## 4.2 Tipo de cambio
+# ¿Qué aprenderemos hoy?
 
-## 4.3 Volatilidad
+Una inversión no tiene un precio fijo: su valor cambia con las noticias, las tasas de interés, el tipo de cambio y las expectativas de compradores y vendedores. **Riesgo de mercado** significa la posibilidad de sufrir pérdidas por esos cambios de precios o factores de mercado, aun cuando nadie incumpla sus obligaciones.
 
-## 4.4 Sensibilidad
+A lo largo de esta clase tendremos una pregunta: **si invertimos USD 100.000, ¿cuánto podríamos perder en un día?** Para contestar, aprenderemos primero a observar precios, calcular rendimientos y entender la volatilidad. Finalmente compararemos tres maneras de calcular el valor en riesgo (VaR).
 
-## 4.5 VaR
+**Instrumentos de hoy:** comenzamos con Tesla; incorporamos NVIDIA; añadimos oro mediante el ETF GLD; Nike queda como práctica. Son datos históricos aportados para la clase, no recomendaciones de inversión. La inversión de USD 100.000 es hipotética.
+
+| Tiempo | Contenido | Qué haremos |
+|---|---|---|
+| 15 min | 4.1 Tasas de interés | Comprender el efecto de las tasas en los bonos |
+| 15 min | 4.2 Tipo de cambio | Conversión sencilla EUR/USD |
+| 40 min | 4.3 Rendimientos y volatilidad | Precios históricos de Tesla |
+| 15 min | 4.4 Sensibilidad | ¿Qué sucede si el precio cae 5%? |
+| 25 min | 4.5 VaR histórico | Observar la cola de pérdidas |
+| 20 min | 4.5 VaR paramétrico | Usar media y desviación estándar |
+| 25 min | 4.5 VaR Monte Carlo | Simular 1.000 escenarios |
+| 25 min | Dos y tres activos; Nike | Comparar y practicar |
+
+# 4.1 Tasas de interés: ¿por qué importan?
+
+Una **tasa de interés** es el precio de utilizar dinero durante un tiempo. Para un préstamo, es un costo para quien recibe el dinero y un ingreso para quien presta. Las tasas de mercado cambian cuando cambian la inflación esperada, las decisiones de política monetaria, la oferta y demanda de crédito y la percepción de riesgo.
+
+## ¿Por qué suben y bajan los precios de los bonos?
+
+Un **bono de tasa fija** promete pagos futuros predeterminados. Si aparece un nuevo bono que paga intereses más altos, el bono antiguo de cupón bajo resulta menos atractivo: **su precio tiende a bajar** para ofrecer un rendimiento competitivo. Si las tasas de mercado bajan, el precio del bono antiguo tiende a subir.
+
+**Ejemplo:** un bono paga USD 50 dentro de un año y USD 1.050 dentro de dos años. Con una tasa del 5%:
+
+$$
+P_{5\%}=\frac{50}{1,05}+\frac{1050}{1,05^2}=1000
+$$
+
+Con tasa de mercado del 6%:
+
+$$
+P_{6\%}=\frac{50}{1,06}+\frac{1050}{1,06^2}\approx981,67
+$$
+
+**Interpretación:** el bono no dejó de pagar, pero hoy vale menos porque los inversionistas exigen un rendimiento mayor. Esta es una pérdida por **riesgo de mercado**, no necesariamente por riesgo de crédito.
+
+En la base adicional `TLT_PRECIOS.csv` tenemos precios de un fondo de bonos del Tesoro; **no es un bono individual** y su comportamiento no permite calcular por sí solo la duración de un bono particular.
+
+**Pregunta al grupo:** si mañana sube la tasa de interés que exigen los inversionistas, ¿en qué dirección esperaríamos que se mueva el precio de un bono de tasa fija?
+
+# 4.2 Tipo de cambio: una inversión puede cambiar de valor sin cambiar de moneda
+
+El **tipo de cambio** expresa el precio de una moneda en términos de otra. Para Ecuador, dolarizado, interesa especialmente el valor en USD de activos denominados en EUR u otras monedas.
+
+Si tenemos **EUR 10.000** y el euro vale **USD 1,10**, nuestra posición vale USD 11.000. Si el euro baja a **USD 1,05**, pasa a USD 10.500.
+
+$$
+\text{Valor en USD}=\text{Euros}\times\text{USD por euro}
+$$
+
+$$
+\Delta V=10.000(1,05-1,10)=\boxed{-500\text{ USD}}
+$$
+
+**Interpretación:** perdimos USD 500 por tipo de cambio, incluso si seguimos poseyendo exactamente EUR 10.000. Las cotizaciones históricas reales del tipo de cambio acompañan la práctica en `EURUSD_PRECIOS.csv`.
+
+# 4.3 Del precio al rendimiento y a la volatilidad
+
+## ¿Qué es una acción?
+
+Una **acción** representa participación en una empresa. Su cotización fluctúa porque cambia lo que compradores y vendedores están dispuestos a pagar por ella. Por eso, para evaluar el riesgo de Tesla, **no alcanza con saber cuánto cuesta una acción**: necesitamos estudiar cómo se mueve su precio entre días de negociación.
+
+![Precio histórico de Tesla](GRAFICO_TESLA_PRECIOS.png){fig-alt="Línea de precios históricos de la acción Tesla"}
+
+## El rendimiento logarítmico diario
+
+Si ayer una acción costaba USD 100 y hoy cuesta USD 105, la subida simple es del 5%. Para nuestro análisis estadístico utilizaremos el **rendimiento logarítmico**, que transforma la relación entre precios mediante el logaritmo natural.
+
+$$
+r_t=\ln\left(\frac{P_t}{P_{t-1}}\right)
+$$
+
+Donde $P_t$ es el precio actual y $P_{t-1}$ es el precio de la negociación anterior. En el ejemplo:
+
+$$
+r_t=\ln(105/100)=0,04879\approx4,879\%
+$$
+
+**Advertencia:** ese 4,879% es un rendimiento logarítmico, no la variación simple del 5%. Para regresar al rendimiento simple se utiliza $e^{r_t}-1$. Los retornos logarítmicos pueden sumarse a través del tiempo, pero **no deben sumarse directamente entre activos como si fueran rendimientos de un portafolio**.
+
+## ¿Qué mide la volatilidad?
+
+La **volatilidad** muestra cuánto se dispersan los rendimientos alrededor de su promedio. Una inversión con grandes movimientos diarios presenta alta volatilidad; otra que cambia poco tiene volatilidad baja.
+
+$$
+\bar r=\frac{1}{n}\sum_{t=1}^{n}r_t
+$$
+
+$$
+s=\sqrt{\frac{\sum_{t=1}^{n}(r_t-\bar r)^2}{n-1}}
+$$
+
+La volatilidad **no distingue entre subidas y bajadas**: considera ambas como variaciones. Por eso más volatilidad no implica que la acción necesariamente vaya a caer, pero sí que presenta mayor incertidumbre en sus cambios de precio.
+
+**Pregunta:** ¿preferirían una acción que varía alrededor de 1% diario o una que alterna cambios de +8% y -8%, si quisieran evitar sobresaltos?
+
+# 4.4 Sensibilidad: una pregunta «¿qué pasaría si...?»
+
+La **sensibilidad** analiza cuánto cambia el valor de nuestra inversión cuando un factor se mueve. Es distinta de volatilidad: volatilidad resume fluctuaciones observadas; sensibilidad aplica un cambio concreto que nosotros definimos.
+
+Si invertimos USD 100.000 en acciones y su precio **cae 5%**:
+
+$$
+\Delta V=100.000\times(-0,05)=\boxed{-5.000\text{ USD}}
+$$
+
+La nueva inversión vale USD 95.000. En bonos, un análisis semejante puede usar duración modificada:
+
+$$
+\frac{\Delta P}{P}\approx-D_{mod}\,\Delta y
+$$
+
+Si la duración modificada es 4 y la tasa sube un punto porcentual, el precio bajaría **aproximadamente 4%**, manteniendo iguales los demás factores. Es una aproximación, no una predicción exacta.
+
+# 4.5 Valor en Riesgo (VaR): ¿cuánto podríamos perder?
+
+El **Valor en Riesgo (VaR)** es un **umbral estadístico de pérdida** asociado a un horizonte temporal y a un nivel de confianza. Un VaR diario al 95% de USD 5.000 significa que, **según el modelo y sus supuestos**, aproximadamente 5 de cada 100 días podrían registrar una pérdida mayor que ese umbral.
+
+**No significa:** que USD 5.000 sea la pérdida máxima; que perdamos exactamente esa suma; ni que el modelo anticipe qué día ocurrirá la pérdida.
+
+## ¿Qué es la cola de una distribución?
+
+Una **distribución de rendimientos** muestra qué variaciones fueron frecuentes y cuáles raras. La parte izquierda contiene rendimientos muy negativos: **la cola izquierda de rendimientos**. Si convertimos los rendimientos en pérdidas monetarias positivas, esas pérdidas extremas aparecen a la **derecha** de la distribución de pérdidas.
+
+![Distribución de rendimientos logarítmicos de Tesla; línea punteada en percentil cinco](GRAFICO_COLA_LOG.png){fig-alt="Histograma de rendimientos logarítmicos de Tesla con percentil 5"}
+
+El **percentil 5** de rendimientos deja aproximadamente 5% de observaciones por debajo de él. El VaR se obtiene convirtiendo ese umbral negativo en una pérdida monetaria. **No podemos prometer que esas pérdidas extremas estarán limitadas por el VaR**.
+
+Nuestra inversión inicial es $V_0=\text{USD }100.000$. Para pasar de un rendimiento logarítmico $q$ al valor final usamos:
+
+$$
+V_1=V_0 e^q
+$$
+
+Y para expresar la pérdida como una cantidad positiva:
+
+$$
+\boxed{VaR=V_0(1-e^q)}
+$$
+
+En la clase trabajaremos con confianza del **95%**, horizonte de **un día** y exactamente los mismos datos iniciales para comparar métodos.
+
+## Método 1: VaR histórico
+
+**Pregunta:** ¿qué pérdidas muestran los rendimientos de los días observados?
+
+1. Calculamos rendimientos logarítmicos de Tesla para todos los días disponibles.
+2. Identificamos el percentil 5% de esos rendimientos.
+3. Convertimos ese percentil a una pérdida en USD.
+
+$$
+q_H=\operatorname{Percentil}_{5\%}(r_1,\ldots,r_n)
+$$
+
+$$
+VaR_H=100.000(1-e^{q_H})
+$$
+
+**Limitación:** si el futuro es muy diferente de la historia observada, este método puede subestimar riesgos nuevos.
+
+## Método 2: VaR paramétrico
+
+**Pregunta:** ¿qué umbral obtenemos si resumimos la serie mediante media, volatilidad y una distribución normal?
+
+Se calcula la media $\bar r$ y la desviación estándar $s$ de los mismos rendimientos logarítmicos. Suponiendo normalidad:
+
+$$
+q_P=\bar r+z_{0,05}s\qquad z_{0,05}\approx-1,64485
+$$
+
+$$
+VaR_P=100.000(1-e^{q_P})
+$$
+
+**Limitación:** la distribución normal puede subestimar eventos extremos si la serie tiene colas más pesadas.
+
+## Método 3: VaR Monte Carlo
+
+**Pregunta:** ¿qué pasa si generamos muchos días posibles según un modelo estadístico?
+
+En lugar de utilizar únicamente los días observados, generamos **1.000 escenarios** de rendimientos logarítmicos:
+
+$$
+r^{(j)}=\bar r+sZ_j,\qquad Z_j\sim N(0,1)
+$$
+
+Encontramos el percentil 5% de los 1.000 resultados simulados y lo convertimos a dólares.
+
+$$
+VaR_{MC}=100.000\left(1-e^{\operatorname{Percentil}_{5\%}(r^{(1)},\ldots,r^{(1000)})}\right)
+$$
+
+Para que todos obtengan exactamente los mismos escenarios **no generamos números aleatorios distintos en cada computadora**: el archivo `MC_Z_FIJA.csv` contiene los 1.000 valores de la normal estándar que utilizaremos tanto en Excel como en Colab.
+
+**Muy importante:** Monte Carlo no necesariamente es «más verdadero». En esta actividad supone rendimientos logarítmicos normales, igual que el VaR paramétrico, y además incorpora variación por el número finito de simulaciones.
+
+# De una acción a un portafolio: correlación y covarianza
+
+Hasta aquí analizamos Tesla por separado. Pero un banco puede invertir en varias acciones o activos a la vez. Para calcular su **rendimiento** basta conocer cuánto dinero colocamos en cada uno. Para medir su **riesgo conjunto** necesitamos entender cómo se mueven entre sí.
+
+## Rendimiento de dos inversiones
+
+Supongamos que el 50 % del portafolio está en Tesla y el 50 % en NVIDIA. Si en un día Tesla sube 4 % y NVIDIA baja 2 %, el rendimiento **simple** del portafolio es:
+
+$$
+R_{p,t}=w_1R_{1,t}+w_2R_{2,t}=0,5(0,04)+0,5(-0,02)=0,01.
+$$
+
+Como en el curso utilizamos rendimientos logarítmicos, convertimos **después** el rendimiento total:
+
+$$
+r_{p,t}=\ln(1+R_{p,t})=\ln(1,01)=0,00995.
+$$
+
+**No promediamos directamente los logaritmos individuales:** eso no representa exactamente el rendimiento de un portafolio con pesos constantes y rebalanceo diario.
+
+## ¿Qué es la correlación?
+
+La **correlación** indica si los rendimientos de dos activos tienden a moverse juntos. Oscila entre $-1$ y $+1$.
+
+- Cercana a $+1$: suelen subir y bajar conjuntamente.
+- Cercana a $0$: poca relación lineal.
+- Cercana a $-1$: suelen moverse en direcciones opuestas.
+
+Cuando los activos no se mueven exactamente juntos, combinarlos puede reducir la volatilidad de un portafolio: es la **diversificación**. Una correlación baja no garantiza ausencia de pérdidas.
+
+## ¿Qué es la covarianza?
+
+La **covarianza** también mide cómo se mueven conjuntamente dos series, pero depende de la escala y sus unidades. La correlación normaliza esa relación para hacerla más sencilla de comparar.
+
+$$
+\operatorname{Cov}(r_1,r_2)=\rho_{12}\,\sigma_1\sigma_2
+$$
+
+Para un portafolio de dos activos, la volatilidad aproximada a partir de los log-retornos individuales es:
+
+$$
+\sigma_p\approx\sqrt{w_1^2\sigma_1^2+w_2^2\sigma_2^2+2w_1w_2\operatorname{Cov}(r_1,r_2)}.
+$$
+
+Con tres activos empleamos una **matriz de covarianzas** $\Sigma$:
+
+$$
+\sigma_p\approx\sqrt{\boldsymbol{w}^{\mathsf T}\Sigma\boldsymbol{w}}.
+$$
+
+Esta fórmula describe una aproximación lineal al riesgo del portafolio cuando modelamos rendimientos logarítmicos individuales. **Para nuestros tres VaR utilizaremos el rendimiento logarítmico observado del portafolio, construido a partir de sus rendimientos simples ponderados**, manteniendo la misma convención de cálculo.
+
+## ¿Por qué cambia el VaR cuando añadimos activos?
+
+El VaR histórico usa los movimientos conjuntos observados. El paramétrico utiliza la distribución del rendimiento del portafolio, que ya incorpora indirectamente los movimientos conjuntos. En **Monte Carlo multivariado** construiremos escenarios para cada activo usando su matriz de covarianzas; la transformación de Cholesky nos permite que los escenarios reflejen esas relaciones.
+
+No significa que Monte Carlo prediga exactamente una crisis: conserva las correlaciones estimadas bajo un modelo normal, que pueden cambiar durante episodios de tensión.
+
+# Aplicación progresiva: una, dos y tres inversiones
+
+Los portafolios tienen **pesos iguales**, se rebalancean diariamente y utilizan fechas comunes. La inversión hipotética es de USD 100.000. La cola izquierda del 5 % se transforma a pérdida en dólares mediante:
+
+$$
+VaR_{95\%}=V_0\left(1-e^{q_{0,05}}\right).
+$$
+
+## Código Python para copiar a Google Colab
+
+Descarga y carga los CSV incluidos. **Este Quarto solo muestra código, no ejecuta Jupyter.** Copia cada bloque a Google Colab, que es donde aparecerán los cálculos y gráficos.
+
+```python
+import numpy as np
+import pandas as pd
+import matplotlib.pyplot as plt
+from statistics import NormalDist
+
+MONTO = 100_000
+CONFIANZA = 0.95
+Z = pd.read_csv('SHOCKS_MC_1000.csv')[['Z1','Z2','Z3']].to_numpy()
+
+def cargar(ticker):
+    return pd.read_csv(f'{ticker}_PRECIOS.csv', parse_dates=['Fecha']).set_index('Fecha')['Precio_USD'].rename(ticker)
+
+def analizar(tickers):
+    precios = pd.concat([cargar(t) for t in tickers], axis=1, join='inner').dropna()
+    retornos_log = np.log(precios / precios.shift(1)).dropna()
+    retornos_simples = np.expm1(retornos_log)
+    portafolio_simple = retornos_simples.mean(axis=1)  # pesos iguales y rebalanceo diario
+    portafolio_log = np.log1p(portafolio_simple)
+    matriz_cov = retornos_log.cov()
+    matriz_corr = retornos_log.corr()
+    print('MATRIZ DE COVARIANZAS'); print(matriz_cov.round(7))
+    print('MATRIZ DE CORRELACIONES'); print(matriz_corr.round(3))
+    print('Interpretación: correlación positiva alta = menor beneficio potencial de diversificación.')
+    media = retornos_log.mean().to_numpy()
+    L = np.linalg.cholesky(matriz_cov.to_numpy())
+    retornos_simulados = media + Z[:, :len(tickers)] @ L.T
+    # Monte Carlo de rendimientos log CONJUNTOS preservando las correlaciones modeladas.
+    portafolio_simulado = np.log1p(np.expm1(retornos_simulados).mean(axis=1))
+    q_hist = np.quantile(portafolio_log.to_numpy(), 0.05, method='linear')
+    q_par = portafolio_log.mean() + NormalDist().inv_cdf(0.05) * portafolio_log.std(ddof=1)
+    q_mc = np.quantile(portafolio_simulado, 0.05, method='linear')
+    valores = MONTO * (1 - np.exp([q_hist, q_par, q_mc]))
+    salida = pd.DataFrame({'Método':['Histórico','Paramétrico','Monte Carlo'], 'VaR_USD':valores})
+    print(salida.to_string(index=False, formatters={'VaR_USD': '{:,.2f}'.format}))
+    print('VaR: umbral que puede superarse en aproximadamente el 5% de días bajo el modelo.')
+    return precios, retornos_log, matriz_cov, matriz_corr, salida
+```
+
+## Etapa 1. Tesla: un activo y tres VaR
+
+```python
+precios, rendimientos, cov, corr, resultado = analizar(['TSLA'])
+```
+
+## Etapa 2. Tesla + NVIDIA: correlación y tres VaR
+
+```python
+precios, rendimientos, cov, corr, resultado = analizar(['TSLA', 'NVDA'])
+```
+
+Mira la correlación entre ambas acciones antes de interpretar si el VaR disminuyó o aumentó.
+
+## Etapa 3. Tesla + NVIDIA + oro (GLD): matriz de tres activos
+
+```python
+precios, rendimientos, cov, corr, resultado = analizar(['TSLA', 'NVDA', 'GLD'])
+```
+
+## Taller individual. Nike
+
+Con `NKE_PRECIOS.csv`, encuentra la media, volatilidad y los tres VaR. **Primero hazlo en Excel y luego verifica ejecutando:**
+
+```python
+precios, rendimientos, cov, corr, resultado = analizar(['NKE'])
+```
+
+# Interpretación final
+
+Un VaR del 95 % expresa un **umbral de pérdidas**, no la pérdida máxima. Una correlación baja puede ayudar a diversificar, pero no elimina el riesgo. Compara histórico, paramétrico y Monte Carlo y explica qué supuestos cambian.
+
 
 # Unidad 5. Perfil Integral de Riesgo Financiero
 
