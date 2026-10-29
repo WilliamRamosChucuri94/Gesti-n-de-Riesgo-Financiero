@@ -54,7 +54,7 @@ $$
 *Valores en millones de USD.*
 
 | Activos           | Millones USD | Pasivos y patrimonio           | Millones USD |
-|:---------------|---------------:|:-------------------------|---------------:|
+|:------------------|-------------:|:-------------------------------|-------------:|
 | Créditos          |          700 | Depósitos                      |          850 |
 | Inversiones       |          200 | Otras obligaciones             |           50 |
 | Efectivo          |          100 | Patrimonio                     |          100 |
@@ -184,7 +184,7 @@ institución.
 **Evolución de los acuerdos**
 
 | Acuerdo | Año de referencia | Principal contribución |
-|------------------------|------------------------|------------------------|
+|----|----|----|
 | Basilea I | 1988 | Introduce un estándar internacional de suficiencia de capital asociado principalmente al riesgo crediticio |
 | Basilea II | 2004 | Desarrolla los tres pilares de supervisión y amplía la sensibilidad al riesgo |
 | Basilea III | Desde 2010 | Refuerza calidad y cantidad del capital, colchones, apalancamiento, liquidez y medición de riesgos |
@@ -527,7 +527,7 @@ indicador para medir cada riesgo y una medida de control.
 Solución orientativa:
 
 | Riesgo | Causa | Indicador | Control |
-|------------------|------------------|------------------|------------------|
+|----|----|----|----|
 | Liquidez | Descalce entre vencimientos y obligaciones | Brecha acumulada por plazo | Mantener recursos realizables y límites de liquidez |
 | Mercado | Variación de tasas internacionales | Duración, DV01 o sensibilidad | Límites de duración y seguimiento de mercado |
 
@@ -545,7 +545,7 @@ La liquidez, en cambio, se refiere a la capacidad de disponer de
 recursos oportunamente para cumplir pagos.
 
 | Pregunta | Solvencia | Liquidez |
-|------------------------|------------------------|------------------------|
+|----|----|----|
 | ¿Cuál es el problema? | Pérdidas que deterioran la posición patrimonial | Incapacidad de atender pagos en el momento requerido |
 | ¿Qué se analiza? | Activos, pasivos, capital o patrimonio | Flujos, vencimientos y disponibilidad de recursos |
 | ¿Puede existir con patrimonio positivo? | El deterioro patrimonial puede preceder a la insolvencia | Sí, puede haber problemas de liquidez con patrimonio positivo |
@@ -653,7 +653,7 @@ estadounidenses que circulan en la economía.
 Esto introduce varias particularidades.
 
 | Dimensión | Consecuencia en Ecuador |
-|------------------------------------|------------------------------------|
+|----|----|
 | Emisión monetaria | No se pueden crear billetes USD mediante emisión propia |
 | Liquidez | Depende de los recursos y mecanismos disponibles legalmente |
 | Tasas internacionales | Las condiciones de financiamiento e inversión en USD están influidas por los mercados internacionales |
@@ -838,7 +838,7 @@ Para esta parte de la clase utilizaremos el marco normativo vigente y
 distinguiremos las funciones de sus diferentes disposiciones.
 
 | Instrumento | Aspecto relevante para la clase |
-|------------------------------------|------------------------------------|
+|----|----|
 | Constitución, art. 302 | Objetivos de las políticas monetaria, crediticia, cambiaria y financiera |
 | Constitución, art. 303 | Formulación e instrumentación de políticas y papel del BCE |
 | Código Orgánico Monetario y Financiero | Mandato, funciones, operaciones y régimen del BCE |
@@ -1565,17 +1565,27 @@ contingencia; todas sujetas a restricciones y costos.
 
 # Unidad 4. Riesgo de Mercado
 
-
 # ¿Qué aprenderemos hoy?
 
-Una inversión no tiene un precio fijo: su valor cambia con las noticias, las tasas de interés, el tipo de cambio y las expectativas de compradores y vendedores. **Riesgo de mercado** significa la posibilidad de sufrir pérdidas por esos cambios de precios o factores de mercado, aun cuando nadie incumpla sus obligaciones.
+Una inversión no tiene un precio fijo: su valor cambia con las noticias,
+las tasas de interés, el tipo de cambio y las expectativas de
+compradores y vendedores. **Riesgo de mercado** significa la posibilidad
+de sufrir pérdidas por esos cambios de precios o factores de mercado,
+aun cuando nadie incumpla sus obligaciones.
 
-A lo largo de esta clase tendremos una pregunta: **si invertimos USD 100.000, ¿cuánto podríamos perder en un día?** Para contestar, aprenderemos primero a observar precios, calcular rendimientos y entender la volatilidad. Finalmente compararemos tres maneras de calcular el valor en riesgo (VaR).
+A lo largo de esta clase tendremos una pregunta: **si invertimos USD
+100.000, ¿cuánto podríamos perder en un día?** Para contestar,
+aprenderemos primero a observar precios, calcular rendimientos y
+entender la volatilidad. Finalmente compararemos tres maneras de
+calcular el valor en riesgo (VaR).
 
-**Instrumentos de hoy:** comenzamos con Tesla; incorporamos NVIDIA; añadimos oro mediante el ETF GLD; Nike queda como práctica. Son datos históricos aportados para la clase, no recomendaciones de inversión. La inversión de USD 100.000 es hipotética.
+**Instrumentos de hoy:** comenzamos con Tesla; incorporamos NVIDIA;
+añadimos oro mediante el ETF GLD; Nike queda como práctica. Son datos
+históricos aportados para la clase, no recomendaciones de inversión. La
+inversión de USD 100.000 es hipotética.
 
 | Tiempo | Contenido | Qué haremos |
-|---|---|---|
+|----|----|----|
 | 15 min | 4.1 Tasas de interés | Comprender el efecto de las tasas en los bonos |
 | 15 min | 4.2 Tipo de cambio | Conversión sencilla EUR/USD |
 | 40 min | 4.3 Rendimientos y volatilidad | Precios históricos de Tesla |
@@ -1587,13 +1597,22 @@ A lo largo de esta clase tendremos una pregunta: **si invertimos USD 100.000, ¿
 
 # 4.1 Tasas de interés: ¿por qué importan?
 
-Una **tasa de interés** es el precio de utilizar dinero durante un tiempo. Para un préstamo, es un costo para quien recibe el dinero y un ingreso para quien presta. Las tasas de mercado cambian cuando cambian la inflación esperada, las decisiones de política monetaria, la oferta y demanda de crédito y la percepción de riesgo.
+Una **tasa de interés** es el precio de utilizar dinero durante un
+tiempo. Para un préstamo, es un costo para quien recibe el dinero y un
+ingreso para quien presta. Las tasas de mercado cambian cuando cambian
+la inflación esperada, las decisiones de política monetaria, la oferta y
+demanda de crédito y la percepción de riesgo.
 
 ## ¿Por qué suben y bajan los precios de los bonos?
 
-Un **bono de tasa fija** promete pagos futuros predeterminados. Si aparece un nuevo bono que paga intereses más altos, el bono antiguo de cupón bajo resulta menos atractivo: **su precio tiende a bajar** para ofrecer un rendimiento competitivo. Si las tasas de mercado bajan, el precio del bono antiguo tiende a subir.
+Un **bono de tasa fija** promete pagos futuros predeterminados. Si
+aparece un nuevo bono que paga intereses más altos, el bono antiguo de
+cupón bajo resulta menos atractivo: **su precio tiende a bajar** para
+ofrecer un rendimiento competitivo. Si las tasas de mercado bajan, el
+precio del bono antiguo tiende a subir.
 
-**Ejemplo:** un bono paga USD 50 dentro de un año y USD 1.050 dentro de dos años. Con una tasa del 5%:
+**Ejemplo:** un bono paga USD 50 dentro de un año y USD 1.050 dentro de
+dos años. Con una tasa del 5%:
 
 $$
 P_{5\%}=\frac{50}{1,05}+\frac{1050}{1,05^2}=1000
@@ -1605,17 +1624,26 @@ $$
 P_{6\%}=\frac{50}{1,06}+\frac{1050}{1,06^2}\approx981,67
 $$
 
-**Interpretación:** el bono no dejó de pagar, pero hoy vale menos porque los inversionistas exigen un rendimiento mayor. Esta es una pérdida por **riesgo de mercado**, no necesariamente por riesgo de crédito.
+**Interpretación:** el bono no dejó de pagar, pero hoy vale menos porque
+los inversionistas exigen un rendimiento mayor. Esta es una pérdida por
+**riesgo de mercado**, no necesariamente por riesgo de crédito.
 
-En la base adicional `TLT_PRECIOS.csv` tenemos precios de un fondo de bonos del Tesoro; **no es un bono individual** y su comportamiento no permite calcular por sí solo la duración de un bono particular.
+En la base adicional `TLT_PRECIOS.csv` tenemos precios de un fondo de
+bonos del Tesoro; **no es un bono individual** y su comportamiento no
+permite calcular por sí solo la duración de un bono particular.
 
-**Pregunta al grupo:** si mañana sube la tasa de interés que exigen los inversionistas, ¿en qué dirección esperaríamos que se mueva el precio de un bono de tasa fija?
+**Pregunta al grupo:** si mañana sube la tasa de interés que exigen los
+inversionistas, ¿en qué dirección esperaríamos que se mueva el precio de
+un bono de tasa fija?
 
 # 4.2 Tipo de cambio: una inversión puede cambiar de valor sin cambiar de moneda
 
-El **tipo de cambio** expresa el precio de una moneda en términos de otra. Para Ecuador, dolarizado, interesa especialmente el valor en USD de activos denominados en EUR u otras monedas.
+El **tipo de cambio** expresa el precio de una moneda en términos de
+otra. Para Ecuador, dolarizado, interesa especialmente el valor en USD
+de activos denominados en EUR u otras monedas.
 
-Si tenemos **EUR 10.000** y el euro vale **USD 1,10**, nuestra posición vale USD 11.000. Si el euro baja a **USD 1,05**, pasa a USD 10.500.
+Si tenemos **EUR 10.000** y el euro vale **USD 1,10**, nuestra posición
+vale USD 11.000. Si el euro baja a **USD 1,05**, pasa a USD 10.500.
 
 $$
 \text{Valor en USD}=\text{Euros}\times\text{USD por euro}
@@ -1625,35 +1653,52 @@ $$
 \Delta V=10.000(1,05-1,10)=\boxed{-500\text{ USD}}
 $$
 
-**Interpretación:** perdimos USD 500 por tipo de cambio, incluso si seguimos poseyendo exactamente EUR 10.000. Las cotizaciones históricas reales del tipo de cambio acompañan la práctica en `EURUSD_PRECIOS.csv`.
+**Interpretación:** perdimos USD 500 por tipo de cambio, incluso si
+seguimos poseyendo exactamente EUR 10.000. Las cotizaciones históricas
+reales del tipo de cambio acompañan la práctica en `EURUSD_PRECIOS.csv`.
 
 # 4.3 Del precio al rendimiento y a la volatilidad
 
 ## ¿Qué es una acción?
 
-Una **acción** representa participación en una empresa. Su cotización fluctúa porque cambia lo que compradores y vendedores están dispuestos a pagar por ella. Por eso, para evaluar el riesgo de Tesla, **no alcanza con saber cuánto cuesta una acción**: necesitamos estudiar cómo se mueve su precio entre días de negociación.
+Una **acción** representa participación en una empresa. Su cotización
+fluctúa porque cambia lo que compradores y vendedores están dispuestos a
+pagar por ella. Por eso, para evaluar el riesgo de Tesla, **no alcanza
+con saber cuánto cuesta una acción**: necesitamos estudiar cómo se mueve
+su precio entre días de negociación.
 
-![Precio histórico de Tesla](GRAFICO_TESLA_PRECIOS.png){fig-alt="Línea de precios históricos de la acción Tesla"}
+![Precio histórico de
+Tesla](GRAFICO_TESLA_PRECIOS.png){fig-alt="Línea de precios históricos de la acción Tesla"}
 
 ## El rendimiento logarítmico diario
 
-Si ayer una acción costaba USD 100 y hoy cuesta USD 105, la subida simple es del 5%. Para nuestro análisis estadístico utilizaremos el **rendimiento logarítmico**, que transforma la relación entre precios mediante el logaritmo natural.
+Si ayer una acción costaba USD 100 y hoy cuesta USD 105, la subida
+simple es del 5%. Para nuestro análisis estadístico utilizaremos el
+**rendimiento logarítmico**, que transforma la relación entre precios
+mediante el logaritmo natural.
 
 $$
 r_t=\ln\left(\frac{P_t}{P_{t-1}}\right)
 $$
 
-Donde $P_t$ es el precio actual y $P_{t-1}$ es el precio de la negociación anterior. En el ejemplo:
+Donde $P_t$ es el precio actual y $P_{t-1}$ es el precio de la
+negociación anterior. En el ejemplo:
 
 $$
 r_t=\ln(105/100)=0,04879\approx4,879\%
 $$
 
-**Advertencia:** ese 4,879% es un rendimiento logarítmico, no la variación simple del 5%. Para regresar al rendimiento simple se utiliza $e^{r_t}-1$. Los retornos logarítmicos pueden sumarse a través del tiempo, pero **no deben sumarse directamente entre activos como si fueran rendimientos de un portafolio**.
+**Advertencia:** ese 4,879% es un rendimiento logarítmico, no la
+variación simple del 5%. Para regresar al rendimiento simple se utiliza
+$e^{r_t}-1$. Los retornos logarítmicos pueden sumarse a través del
+tiempo, pero **no deben sumarse directamente entre activos como si
+fueran rendimientos de un portafolio**.
 
 ## ¿Qué mide la volatilidad?
 
-La **volatilidad** muestra cuánto se dispersan los rendimientos alrededor de su promedio. Una inversión con grandes movimientos diarios presenta alta volatilidad; otra que cambia poco tiene volatilidad baja.
+La **volatilidad** muestra cuánto se dispersan los rendimientos
+alrededor de su promedio. Una inversión con grandes movimientos diarios
+presenta alta volatilidad; otra que cambia poco tiene volatilidad baja.
 
 $$
 \bar r=\frac{1}{n}\sum_{t=1}^{n}r_t
@@ -1663,13 +1708,20 @@ $$
 s=\sqrt{\frac{\sum_{t=1}^{n}(r_t-\bar r)^2}{n-1}}
 $$
 
-La volatilidad **no distingue entre subidas y bajadas**: considera ambas como variaciones. Por eso más volatilidad no implica que la acción necesariamente vaya a caer, pero sí que presenta mayor incertidumbre en sus cambios de precio.
+La volatilidad **no distingue entre subidas y bajadas**: considera ambas
+como variaciones. Por eso más volatilidad no implica que la acción
+necesariamente vaya a caer, pero sí que presenta mayor incertidumbre en
+sus cambios de precio.
 
-**Pregunta:** ¿preferirían una acción que varía alrededor de 1% diario o una que alterna cambios de +8% y -8%, si quisieran evitar sobresaltos?
+**Pregunta:** ¿preferirían una acción que varía alrededor de 1% diario o
+una que alterna cambios de +8% y -8%, si quisieran evitar sobresaltos?
 
 # 4.4 Sensibilidad: una pregunta «¿qué pasaría si...?»
 
-La **sensibilidad** analiza cuánto cambia el valor de nuestra inversión cuando un factor se mueve. Es distinta de volatilidad: volatilidad resume fluctuaciones observadas; sensibilidad aplica un cambio concreto que nosotros definimos.
+La **sensibilidad** analiza cuánto cambia el valor de nuestra inversión
+cuando un factor se mueve. Es distinta de volatilidad: volatilidad
+resume fluctuaciones observadas; sensibilidad aplica un cambio concreto
+que nosotros definimos.
 
 Si invertimos USD 100.000 en acciones y su precio **cae 5%**:
 
@@ -1677,29 +1729,48 @@ $$
 \Delta V=100.000\times(-0,05)=\boxed{-5.000\text{ USD}}
 $$
 
-La nueva inversión vale USD 95.000. En bonos, un análisis semejante puede usar duración modificada:
+La nueva inversión vale USD 95.000. En bonos, un análisis semejante
+puede usar duración modificada:
 
 $$
 \frac{\Delta P}{P}\approx-D_{mod}\,\Delta y
 $$
 
-Si la duración modificada es 4 y la tasa sube un punto porcentual, el precio bajaría **aproximadamente 4%**, manteniendo iguales los demás factores. Es una aproximación, no una predicción exacta.
+Si la duración modificada es 4 y la tasa sube un punto porcentual, el
+precio bajaría **aproximadamente 4%**, manteniendo iguales los demás
+factores. Es una aproximación, no una predicción exacta.
 
 # 4.5 Valor en Riesgo (VaR): ¿cuánto podríamos perder?
 
-El **Valor en Riesgo (VaR)** es un **umbral estadístico de pérdida** asociado a un horizonte temporal y a un nivel de confianza. Un VaR diario al 95% de USD 5.000 significa que, **según el modelo y sus supuestos**, aproximadamente 5 de cada 100 días podrían registrar una pérdida mayor que ese umbral.
+El **Valor en Riesgo (VaR)** es un **umbral estadístico de pérdida**
+asociado a un horizonte temporal y a un nivel de confianza. Un VaR
+diario al 95% de USD 5.000 significa que, **según el modelo y sus
+supuestos**, aproximadamente 5 de cada 100 días podrían registrar una
+pérdida mayor que ese umbral.
 
-**No significa:** que USD 5.000 sea la pérdida máxima; que perdamos exactamente esa suma; ni que el modelo anticipe qué día ocurrirá la pérdida.
+**No significa:** que USD 5.000 sea la pérdida máxima; que perdamos
+exactamente esa suma; ni que el modelo anticipe qué día ocurrirá la
+pérdida.
 
 ## ¿Qué es la cola de una distribución?
 
-Una **distribución de rendimientos** muestra qué variaciones fueron frecuentes y cuáles raras. La parte izquierda contiene rendimientos muy negativos: **la cola izquierda de rendimientos**. Si convertimos los rendimientos en pérdidas monetarias positivas, esas pérdidas extremas aparecen a la **derecha** de la distribución de pérdidas.
+Una **distribución de rendimientos** muestra qué variaciones fueron
+frecuentes y cuáles raras. La parte izquierda contiene rendimientos muy
+negativos: **la cola izquierda de rendimientos**. Si convertimos los
+rendimientos en pérdidas monetarias positivas, esas pérdidas extremas
+aparecen a la **derecha** de la distribución de pérdidas.
 
-![Distribución de rendimientos logarítmicos de Tesla; línea punteada en percentil cinco](GRAFICO_COLA_LOG.png){fig-alt="Histograma de rendimientos logarítmicos de Tesla con percentil 5"}
+![Distribución de rendimientos logarítmicos de Tesla; línea punteada en
+percentil
+cinco](GRAFICO_COLA_LOG.png){fig-alt="Histograma de rendimientos logarítmicos de Tesla con percentil 5"}
 
-El **percentil 5** de rendimientos deja aproximadamente 5% de observaciones por debajo de él. El VaR se obtiene convirtiendo ese umbral negativo en una pérdida monetaria. **No podemos prometer que esas pérdidas extremas estarán limitadas por el VaR**.
+El **percentil 5** de rendimientos deja aproximadamente 5% de
+observaciones por debajo de él. El VaR se obtiene convirtiendo ese
+umbral negativo en una pérdida monetaria. **No podemos prometer que esas
+pérdidas extremas estarán limitadas por el VaR**.
 
-Nuestra inversión inicial es $V_0=\text{USD }100.000$. Para pasar de un rendimiento logarítmico $q$ al valor final usamos:
+Nuestra inversión inicial es $V_0=\text{USD }100.000$. Para pasar de un
+rendimiento logarítmico $q$ al valor final usamos:
 
 $$
 V_1=V_0 e^q
@@ -1711,15 +1782,18 @@ $$
 \boxed{VaR=V_0(1-e^q)}
 $$
 
-En la clase trabajaremos con confianza del **95%**, horizonte de **un día** y exactamente los mismos datos iniciales para comparar métodos.
+En la clase trabajaremos con confianza del **95%**, horizonte de **un
+día** y exactamente los mismos datos iniciales para comparar métodos.
 
 ## Método 1: VaR histórico
 
-**Pregunta:** ¿qué pérdidas muestran los rendimientos de los días observados?
+**Pregunta:** ¿qué pérdidas muestran los rendimientos de los días
+observados?
 
-1. Calculamos rendimientos logarítmicos de Tesla para todos los días disponibles.
-2. Identificamos el percentil 5% de esos rendimientos.
-3. Convertimos ese percentil a una pérdida en USD.
+1.  Calculamos rendimientos logarítmicos de Tesla para todos los días
+    disponibles.
+2.  Identificamos el percentil 5% de esos rendimientos.
+3.  Convertimos ese percentil a una pérdida en USD.
 
 $$
 q_H=\operatorname{Percentil}_{5\%}(r_1,\ldots,r_n)
@@ -1729,13 +1803,16 @@ $$
 VaR_H=100.000(1-e^{q_H})
 $$
 
-**Limitación:** si el futuro es muy diferente de la historia observada, este método puede subestimar riesgos nuevos.
+**Limitación:** si el futuro es muy diferente de la historia observada,
+este método puede subestimar riesgos nuevos.
 
 ## Método 2: VaR paramétrico
 
-**Pregunta:** ¿qué umbral obtenemos si resumimos la serie mediante media, volatilidad y una distribución normal?
+**Pregunta:** ¿qué umbral obtenemos si resumimos la serie mediante
+media, volatilidad y una distribución normal?
 
-Se calcula la media $\bar r$ y la desviación estándar $s$ de los mismos rendimientos logarítmicos. Suponiendo normalidad:
+Se calcula la media $\bar r$ y la desviación estándar $s$ de los mismos
+rendimientos logarítmicos. Suponiendo normalidad:
 
 $$
 q_P=\bar r+z_{0,05}s\qquad z_{0,05}\approx-1,64485
@@ -1745,67 +1822,91 @@ $$
 VaR_P=100.000(1-e^{q_P})
 $$
 
-**Limitación:** la distribución normal puede subestimar eventos extremos si la serie tiene colas más pesadas.
+**Limitación:** la distribución normal puede subestimar eventos extremos
+si la serie tiene colas más pesadas.
 
 ## Método 3: VaR Monte Carlo
 
-**Pregunta:** ¿qué pasa si generamos muchos días posibles según un modelo estadístico?
+**Pregunta:** ¿qué pasa si generamos muchos días posibles según un
+modelo estadístico?
 
-En lugar de utilizar únicamente los días observados, generamos **1.000 escenarios** de rendimientos logarítmicos:
+En lugar de utilizar únicamente los días observados, generamos **1.000
+escenarios** de rendimientos logarítmicos:
 
 $$
 r^{(j)}=\bar r+sZ_j,\qquad Z_j\sim N(0,1)
 $$
 
-Encontramos el percentil 5% de los 1.000 resultados simulados y lo convertimos a dólares.
+Encontramos el percentil 5% de los 1.000 resultados simulados y lo
+convertimos a dólares.
 
 $$
 VaR_{MC}=100.000\left(1-e^{\operatorname{Percentil}_{5\%}(r^{(1)},\ldots,r^{(1000)})}\right)
 $$
 
-Para que todos obtengan exactamente los mismos escenarios **no generamos números aleatorios distintos en cada computadora**: el archivo `MC_Z_FIJA.csv` contiene los 1.000 valores de la normal estándar que utilizaremos tanto en Excel como en Colab.
+Para que todos obtengan exactamente los mismos escenarios **no generamos
+números aleatorios distintos en cada computadora**: el archivo
+`MC_Z_FIJA.csv` contiene los 1.000 valores de la normal estándar que
+utilizaremos tanto en Excel como en Colab.
 
-**Muy importante:** Monte Carlo no necesariamente es «más verdadero». En esta actividad supone rendimientos logarítmicos normales, igual que el VaR paramétrico, y además incorpora variación por el número finito de simulaciones.
+**Muy importante:** Monte Carlo no necesariamente es «más verdadero». En
+esta actividad supone rendimientos logarítmicos normales, igual que el
+VaR paramétrico, y además incorpora variación por el número finito de
+simulaciones.
 
 # De una acción a un portafolio: correlación y covarianza
 
-Hasta aquí analizamos Tesla por separado. Pero un banco puede invertir en varias acciones o activos a la vez. Para calcular su **rendimiento** basta conocer cuánto dinero colocamos en cada uno. Para medir su **riesgo conjunto** necesitamos entender cómo se mueven entre sí.
+Hasta aquí analizamos Tesla por separado. Pero un banco puede invertir
+en varias acciones o activos a la vez. Para calcular su **rendimiento**
+basta conocer cuánto dinero colocamos en cada uno. Para medir su
+**riesgo conjunto** necesitamos entender cómo se mueven entre sí.
 
 ## Rendimiento de dos inversiones
 
-Supongamos que el 50 % del portafolio está en Tesla y el 50 % en NVIDIA. Si en un día Tesla sube 4 % y NVIDIA baja 2 %, el rendimiento **simple** del portafolio es:
+Supongamos que el 50 % del portafolio está en Tesla y el 50 % en NVIDIA.
+Si en un día Tesla sube 4 % y NVIDIA baja 2 %, el rendimiento **simple**
+del portafolio es:
 
 $$
 R_{p,t}=w_1R_{1,t}+w_2R_{2,t}=0,5(0,04)+0,5(-0,02)=0,01.
 $$
 
-Como en el curso utilizamos rendimientos logarítmicos, convertimos **después** el rendimiento total:
+Como en el curso utilizamos rendimientos logarítmicos, convertimos
+**después** el rendimiento total:
 
 $$
 r_{p,t}=\ln(1+R_{p,t})=\ln(1,01)=0,00995.
 $$
 
-**No promediamos directamente los logaritmos individuales:** eso no representa exactamente el rendimiento de un portafolio con pesos constantes y rebalanceo diario.
+**No promediamos directamente los logaritmos individuales:** eso no
+representa exactamente el rendimiento de un portafolio con pesos
+constantes y rebalanceo diario.
 
 ## ¿Qué es la correlación?
 
-La **correlación** indica si los rendimientos de dos activos tienden a moverse juntos. Oscila entre $-1$ y $+1$.
+La **correlación** indica si los rendimientos de dos activos tienden a
+moverse juntos. Oscila entre $-1$ y $+1$.
 
-- Cercana a $+1$: suelen subir y bajar conjuntamente.
-- Cercana a $0$: poca relación lineal.
-- Cercana a $-1$: suelen moverse en direcciones opuestas.
+-   Cercana a $+1$: suelen subir y bajar conjuntamente.
+-   Cercana a $0$: poca relación lineal.
+-   Cercana a $-1$: suelen moverse en direcciones opuestas.
 
-Cuando los activos no se mueven exactamente juntos, combinarlos puede reducir la volatilidad de un portafolio: es la **diversificación**. Una correlación baja no garantiza ausencia de pérdidas.
+Cuando los activos no se mueven exactamente juntos, combinarlos puede
+reducir la volatilidad de un portafolio: es la **diversificación**. Una
+correlación baja no garantiza ausencia de pérdidas.
 
 ## ¿Qué es la covarianza?
 
-La **covarianza** también mide cómo se mueven conjuntamente dos series, pero depende de la escala y sus unidades. La correlación normaliza esa relación para hacerla más sencilla de comparar.
+La **covarianza** también mide cómo se mueven conjuntamente dos series,
+pero depende de la escala y sus unidades. La correlación normaliza esa
+relación para hacerla más sencilla de comparar.
 
 $$
 \operatorname{Cov}(r_1,r_2)=\rho_{12}\,\sigma_1\sigma_2
 $$
 
-Para un portafolio de dos activos, la volatilidad aproximada a partir de los log-retornos individuales es:
+Para un portafolio de dos activos, la volatilidad aproximada a partir de
+los log-retornos individuales es:
 
 $$
 \sigma_p\approx\sqrt{w_1^2\sigma_1^2+w_2^2\sigma_2^2+2w_1w_2\operatorname{Cov}(r_1,r_2)}.
@@ -1817,17 +1918,30 @@ $$
 \sigma_p\approx\sqrt{\boldsymbol{w}^{\mathsf T}\Sigma\boldsymbol{w}}.
 $$
 
-Esta fórmula describe una aproximación lineal al riesgo del portafolio cuando modelamos rendimientos logarítmicos individuales. **Para nuestros tres VaR utilizaremos el rendimiento logarítmico observado del portafolio, construido a partir de sus rendimientos simples ponderados**, manteniendo la misma convención de cálculo.
+Esta fórmula describe una aproximación lineal al riesgo del portafolio
+cuando modelamos rendimientos logarítmicos individuales. **Para nuestros
+tres VaR utilizaremos el rendimiento logarítmico observado del
+portafolio, construido a partir de sus rendimientos simples
+ponderados**, manteniendo la misma convención de cálculo.
 
 ## ¿Por qué cambia el VaR cuando añadimos activos?
 
-El VaR histórico usa los movimientos conjuntos observados. El paramétrico utiliza la distribución del rendimiento del portafolio, que ya incorpora indirectamente los movimientos conjuntos. En **Monte Carlo multivariado** construiremos escenarios para cada activo usando su matriz de covarianzas; la transformación de Cholesky nos permite que los escenarios reflejen esas relaciones.
+El VaR histórico usa los movimientos conjuntos observados. El
+paramétrico utiliza la distribución del rendimiento del portafolio, que
+ya incorpora indirectamente los movimientos conjuntos. En **Monte Carlo
+multivariado** construiremos escenarios para cada activo usando su
+matriz de covarianzas; la transformación de Cholesky nos permite que los
+escenarios reflejen esas relaciones.
 
-No significa que Monte Carlo prediga exactamente una crisis: conserva las correlaciones estimadas bajo un modelo normal, que pueden cambiar durante episodios de tensión.
+No significa que Monte Carlo prediga exactamente una crisis: conserva
+las correlaciones estimadas bajo un modelo normal, que pueden cambiar
+durante episodios de tensión.
 
 # Aplicación progresiva: una, dos y tres inversiones
 
-Los portafolios tienen **pesos iguales**, se rebalancean diariamente y utilizan fechas comunes. La inversión hipotética es de USD 100.000. La cola izquierda del 5 % se transforma a pérdida en dólares mediante:
+Los portafolios tienen **pesos iguales**, se rebalancean diariamente y
+utilizan fechas comunes. La inversión hipotética es de USD 100.000. La
+cola izquierda del 5 % se transforma a pérdida en dólares mediante:
 
 $$
 VaR_{95\%}=V_0\left(1-e^{q_{0,05}}\right).
@@ -1835,9 +1949,11 @@ $$
 
 ## Código Python para copiar a Google Colab
 
-Descarga y carga los CSV incluidos. **Este Quarto solo muestra código, no ejecuta Jupyter.** Copia cada bloque a Google Colab, que es donde aparecerán los cálculos y gráficos.
+Descarga y carga los CSV incluidos. **Este Quarto solo muestra código,
+no ejecuta Jupyter.** Copia cada bloque a Google Colab, que es donde
+aparecerán los cálculos y gráficos.
 
-```python
+``` python
 import numpy as np
 import pandas as pd
 import matplotlib.pyplot as plt
@@ -1878,45 +1994,216 @@ def analizar(tickers):
 
 ## Etapa 1. Tesla: un activo y tres VaR
 
-```python
+``` python
 precios, rendimientos, cov, corr, resultado = analizar(['TSLA'])
 ```
 
 ## Etapa 2. Tesla + NVIDIA: correlación y tres VaR
 
-```python
+``` python
 precios, rendimientos, cov, corr, resultado = analizar(['TSLA', 'NVDA'])
 ```
 
-Mira la correlación entre ambas acciones antes de interpretar si el VaR disminuyó o aumentó.
+Mira la correlación entre ambas acciones antes de interpretar si el VaR
+disminuyó o aumentó.
 
 ## Etapa 3. Tesla + NVIDIA + oro (GLD): matriz de tres activos
 
-```python
+``` python
 precios, rendimientos, cov, corr, resultado = analizar(['TSLA', 'NVDA', 'GLD'])
 ```
 
 ## Taller individual. Nike
 
-Con `NKE_PRECIOS.csv`, encuentra la media, volatilidad y los tres VaR. **Primero hazlo en Excel y luego verifica ejecutando:**
+Con `NKE_PRECIOS.csv`, encuentra la media, volatilidad y los tres VaR.
+**Primero hazlo en Excel y luego verifica ejecutando:**
 
-```python
+``` python
 precios, rendimientos, cov, corr, resultado = analizar(['NKE'])
 ```
 
 # Interpretación final
 
-Un VaR del 95 % expresa un **umbral de pérdidas**, no la pérdida máxima. Una correlación baja puede ayudar a diversificar, pero no elimina el riesgo. Compara histórico, paramétrico y Monte Carlo y explica qué supuestos cambian.
-
+Un VaR del 95 % expresa un **umbral de pérdidas**, no la pérdida máxima.
+Una correlación baja puede ayudar a diversificar, pero no elimina el
+riesgo. Compara histórico, paramétrico y Monte Carlo y explica qué
+supuestos cambian.
 
 # Unidad 5. Perfil Integral de Riesgo Financiero
 
-## 5.1 Capital económico
+# El desafío del Comité de Riesgos
 
-## 5.2 Apetito de Riesgo
+**Caso: Banco Ejemplo.** Ustedes integran el Comité de Riesgos de una
+institución financiera. Reciben un informe ejecutivo con resultados de
+crédito, liquidez, mercado y capital. Su trabajo consiste en identificar
+las alertas, comprender sus causas y recomendar decisiones. **Todos los
+valores y límites son hipotéticos**, para aprendizaje; no son cifras
+regulatorias oficiales ni datos de un banco real.
 
-## 5.3 Consolidación financiera
+**Pregunta inicial:** ¿Puede un banco presentar capital suficiente y, al
+mismo tiempo, estar expuesto a una crisis de liquidez o a pérdidas
+elevadas de mercado?
 
-## 5.4 Evaluación integral
+# 5.1 Capital económico: ¿cuánto riesgo podemos absorber? (7 minutos)
 
-## 5.5 Reportes ejecutivos
+El **capital regulatorio** es el capital admisible conforme a requisitos
+prudenciales; el **capital económico** es la estimación interna de
+recursos que la institución considera necesarios para absorber pérdidas
+inesperadas bajo un modelo y un horizonte definidos. No son sinónimos
+del patrimonio contable.
+
+$$
+CAR=\frac{\text{Capital regulatorio}}{\text{Activos ponderados por riesgo}}\times100
+$$
+
+$$
+\text{Cobertura de capital económico}=\frac{\text{Capital disponible asignado}}{\text{Capital económico requerido}}\times100
+$$
+
+**Nuestro banco:** capital disponible asignado, USD 90 millones;
+requerimiento económico, USD 75 millones.
+
+$$
+\frac{90}{75}\times100=120\%
+$$
+
+El capital supera el requerimiento estimado en USD 15 millones, o un 20%
+del requerimiento. **120% no quiere decir que el banco tenga
+rentabilidad de 120% ni que pueda afrontar cualquier pérdida.** La
+suficiencia depende del modelo, los riesgos incluidos y el escenario. En
+el informe también aparece el CAR ilustrativo: capital regulatorio USD
+90 millones y APR USD 750 millones, equivalente al 12%.
+
+**Para conversar:** ¿Por qué no debemos confundir el CAR del 12% con la
+cobertura del capital económico del 120%?
+
+# 5.2 Apetito de riesgo: límites antes que resultados (7 minutos)
+
+El **apetito de riesgo** expresa los riesgos que la institución está
+dispuesta a asumir para alcanzar sus objetivos. La **tolerancia** indica
+desviaciones aceptables y un **límite operativo** convierte ese criterio
+en una regla comprobable.
+
+En el reporte, la morosidad de **6%** supera el máximo interno de
+**5%**; el VaR diario de **USD 8 millones** supera el límite interno de
+**USD 6 millones**. Cumplir otras métricas no neutraliza estos
+incumplimientos.
+
+**Para conversar:** ¿Quién debe actuar ante un exceso: el área que tomó
+la exposición, la unidad independiente de riesgos o el órgano de
+gobierno? ¿Cómo deberían coordinarse?
+
+# 5.3 Consolidación financiera: una visión de todos los riesgos (7 minutos)
+
+Un reporte integral reúne riesgos distintos **sin sumar indicadores
+incompatibles**. Estas son las conexiones con las unidades del curso:
+
+| Unidad | Pregunta | Indicador del reporte |
+|----|----|----|
+| **1. Fundamentos y solvencia** | ¿El banco mantiene capital frente a sus exposiciones? | Patrimonio, APR y CAR |
+| **2. Crédito** | ¿Qué parte de la cartera está deteriorada? | Morosidad y cobertura de provisiones |
+| **3. Liquidez** | ¿Puede atender salidas de efectivo bajo estrés? | ICL simplificado y brechas |
+| **4. Mercado** | ¿Qué umbral de pérdida diaria enfrenta la cartera de mercado? | VaR 95%, un día |
+| **5. Integración** | ¿Qué riesgos superan límites y quién responde? | Alertas, escenarios, responsables |
+
+**Crédito:** la cartera improductiva agrupa los saldos que no devengan
+intereses y los vencidos, según clasificación contable. La morosidad es
+un indicador de *stock*, no una probabilidad de incumplimiento (PD). La
+provisión contable no equivale automáticamente a
+$PD\times LGD\times EAD$.
+
+$$
+\text{Morosidad}=\frac{\text{Cartera improductiva}}{\text{Cartera total}}\times100
+\qquad
+\text{Cobertura}=\frac{\text{Provisiones}}{\text{Cartera improductiva}}\times100
+$$
+
+**Liquidez:** un retiro de depósitos constituye una **salida de caja**,
+no automáticamente una pérdida de patrimonio. Nuestro ICL es una versión
+**didáctica simplificada** basada en activos líquidos y salidas netas de
+treinta días, no el reporte regulatorio real.
+
+$$
+ICL_{\text{didáctico}}=\frac{\text{Activos líquidos supuestos}}{\text{Salidas netas de 30 días}}\times100
+$$
+
+**Mercado:** el VaR al 95% y a un día señala un umbral de pérdida bajo
+un modelo; no es el peor resultado posible, ni una pérdida efectivamente
+realizada.
+
+**Para conversar:** ¿Qué indicador analizarían primero si aumentan los
+retiros de depósitos, aun cuando el CAR permanezca estable?
+
+# 5.4 Evaluación integral: analizar el reporte (9 minutos)
+
+**Abran el Excel `Informe_Comite_Riesgos_UNA_HOJA.xlsx` y lean su
+tablero.** El informe ya está calculado; no es necesario completar
+fórmulas.
+
+## Situación base
+
+| Riesgo / dimensión             | Resultado | Límite interno didáctico | Lectura |
+|--------------------------------|----------:|-------------------------:|---------|
+| Morosidad                      |      6,0% |              Máximo 5,0% | Alerta  |
+| Cobertura de provisiones       |     71,4% |             Mínimo 80,0% | Alerta  |
+| ICL simplificado               |    115,0% |            Mínimo 110,0% | Cumple  |
+| VaR de mercado, 95% / 1 día    |   USD 8 M |           Máximo USD 6 M | Alerta  |
+| CAR ilustrativo                |     12,0% |     Mínimo interno 11,0% | Cumple  |
+| Cobertura de capital económico |    120,0% |            Mínimo 100,0% | Cumple  |
+
+## ¿Qué cambia en el estrés?
+
+| Escenario | ICL simplificado | Cobertura de capital económico |
+|-----------|-----------------:|-------------------------------:|
+| Base      |           115,0% |                         120,0% |
+| Moderado  |            91,3% |                         103,5% |
+| Severo    |            65,7% |                          84,2% |
+
+Los escenarios modifican supuestos de liquidez y de capital económico
+por separado. **No deben sumarse retiros de depósitos, VaR diario y
+requerimientos de capital como si todos fueran la misma pérdida.**
+
+**Para conversar:** ¿El cumplimiento en el escenario base garantiza
+resiliencia bajo un escenario severo? ¿Qué riesgo se vuelve prioritario?
+
+# 5.5 Reporte ejecutivo y decisiones del Comité (5 minutos)
+
+Un reporte útil presenta **resultado, límite, diagnóstico, decisión,
+responsable, plazo y evidencia de seguimiento**. No basta con mostrar
+una cifra verde o roja: hay que explicar qué significa y qué se propone
+hacer.
+
+En el Excel se presentan cuatro acuerdos: recuperación de cartera,
+revisión de exposición de mercado, plan de liquidez contingente y
+preparación de capital ante estrés. Estos acuerdos se proponen para
+discusión; no representan medidas obligatorias de un supervisor.
+
+## Simulación de Comité — discusión final (10 minutos)
+
+1.  Si tuvieran que presentar **una sola alerta** a la gerencia general,
+    ¿cuál escogerían y por qué?
+2.  ¿Por qué el **ICL del 115%** en el escenario base no permite
+    concluir que el banco no tiene riesgo de liquidez?
+3.  ¿Qué diferencia existe entre **morosidad**, **PD** y **pérdida
+    esperada**? ¿Cuál muestra el reporte y cuál no?
+4.  ¿Qué significa que el **VaR diario exceda el límite interno**,
+    aunque no se haya materializado una pérdida de USD 8 millones?
+5.  ¿Qué nos enseña pasar de **120% de cobertura de capital** en base a
+    **84,2% bajo estrés severo**?
+6.  Como Comité, ¿qué **dos decisiones** aprobarían, quién debería
+    ejecutarlas y cómo verificarían su cumplimiento?
+
+**Cierre:** Una gestión integral no consiste en sumar números de
+crédito, liquidez y mercado. Consiste en comprender sus conexiones,
+contrastarlas con el apetito institucional, probar escenarios y tomar
+decisiones responsables.
+
+::: callout-note
+## Alcance del ejercicio
+
+Las cifras y los límites son ficticios. Los indicadores de liquidez,
+capital económico y solvencia son simplificaciones docentes; no
+sustituyen el cálculo regulatorio aplicable en Ecuador. Todas las
+cantidades monetarias del caso se expresan en **millones de dólares**,
+salvo indicación contraria.
+:::

@@ -210,38 +210,24 @@
     "text": "Taller individual. Nike\nCon NKE_PRECIOS.csv, encuentra la media, volatilidad y los tres VaR. Primero hazlo en Excel y luego verifica ejecutando:\nprecios, rendimientos, cov, corr, resultado = analizar(['NKE'])"
   },
   {
-    "objectID": "index.html#capital-económico",
-    "href": "index.html#capital-económico",
+    "objectID": "index.html#situación-base",
+    "href": "index.html#situación-base",
     "title": "Gestión de Riesgos Financieros",
-    "section": "5.1 Capital económico",
-    "text": "5.1 Capital económico"
+    "section": "Situación base",
+    "text": "Situación base\n\n\n\n\n\n\n\n\n\nRiesgo / dimensión\nResultado\nLímite interno didáctico\nLectura\n\n\n\n\nMorosidad\n6,0%\nMáximo 5,0%\nAlerta\n\n\nCobertura de provisiones\n71,4%\nMínimo 80,0%\nAlerta\n\n\nICL simplificado\n115,0%\nMínimo 110,0%\nCumple\n\n\nVaR de mercado, 95% / 1 día\nUSD 8 M\nMáximo USD 6 M\nAlerta\n\n\nCAR ilustrativo\n12,0%\nMínimo interno 11,0%\nCumple\n\n\nCobertura de capital económico\n120,0%\nMínimo 100,0%\nCumple"
   },
   {
-    "objectID": "index.html#apetito-de-riesgo",
-    "href": "index.html#apetito-de-riesgo",
+    "objectID": "index.html#qué-cambia-en-el-estrés",
+    "href": "index.html#qué-cambia-en-el-estrés",
     "title": "Gestión de Riesgos Financieros",
-    "section": "5.2 Apetito de Riesgo",
-    "text": "5.2 Apetito de Riesgo"
+    "section": "¿Qué cambia en el estrés?",
+    "text": "¿Qué cambia en el estrés?\n\n\n\nEscenario\nICL simplificado\nCobertura de capital económico\n\n\n\n\nBase\n115,0%\n120,0%\n\n\nModerado\n91,3%\n103,5%\n\n\nSevero\n65,7%\n84,2%\n\n\n\nLos escenarios modifican supuestos de liquidez y de capital económico por separado. No deben sumarse retiros de depósitos, VaR diario y requerimientos de capital como si todos fueran la misma pérdida.\nPara conversar: ¿El cumplimiento en el escenario base garantiza resiliencia bajo un escenario severo? ¿Qué riesgo se vuelve prioritario?"
   },
   {
-    "objectID": "index.html#consolidación-financiera",
-    "href": "index.html#consolidación-financiera",
+    "objectID": "index.html#simulación-de-comité-discusión-final-10-minutos",
+    "href": "index.html#simulación-de-comité-discusión-final-10-minutos",
     "title": "Gestión de Riesgos Financieros",
-    "section": "5.3 Consolidación financiera",
-    "text": "5.3 Consolidación financiera"
-  },
-  {
-    "objectID": "index.html#evaluación-integral",
-    "href": "index.html#evaluación-integral",
-    "title": "Gestión de Riesgos Financieros",
-    "section": "5.4 Evaluación integral",
-    "text": "5.4 Evaluación integral"
-  },
-  {
-    "objectID": "index.html#reportes-ejecutivos",
-    "href": "index.html#reportes-ejecutivos",
-    "title": "Gestión de Riesgos Financieros",
-    "section": "5.5 Reportes ejecutivos",
-    "text": "5.5 Reportes ejecutivos"
+    "section": "Simulación de Comité — discusión final (10 minutos)",
+    "text": "Simulación de Comité — discusión final (10 minutos)\n\nSi tuvieran que presentar una sola alerta a la gerencia general, ¿cuál escogerían y por qué?\n¿Por qué el ICL del 115% en el escenario base no permite concluir que el banco no tiene riesgo de liquidez?\n¿Qué diferencia existe entre morosidad, PD y pérdida esperada? ¿Cuál muestra el reporte y cuál no?\n¿Qué significa que el VaR diario exceda el límite interno, aunque no se haya materializado una pérdida de USD 8 millones?\n¿Qué nos enseña pasar de 120% de cobertura de capital en base a 84,2% bajo estrés severo?\nComo Comité, ¿qué dos decisiones aprobarían, quién debería ejecutarlas y cómo verificarían su cumplimiento?\n\nCierre: Una gestión integral no consiste en sumar números de crédito, liquidez y mercado. Consiste en comprender sus conexiones, contrastarlas con el apetito institucional, probar escenarios y tomar decisiones responsables.\n\n\n\n\n\n\nAlcance del ejercicio\n\n\n\nLas cifras y los límites son ficticios. Los indicadores de liquidez, capital económico y solvencia son simplificaciones docentes; no sustituyen el cálculo regulatorio aplicable en Ecuador. Todas las cantidades monetarias del caso se expresan en millones de dólares, salvo indicación contraria."
   }
 ]
